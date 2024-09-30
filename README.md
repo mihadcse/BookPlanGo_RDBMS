@@ -39,8 +39,6 @@
   
 ## Tech Stack and Implementation
 ![Java](https://www.oracle.com/a/ocom/img/cb71-java-logo.png)
-![JavaFX](https://openjfx.io/images/javafx-logo.png)
-![SceneBuilder](https://www.oracle.com/a/ocom/img/cb71-scene-builder-logo.png)
 ![MySQL](https://www.mysql.com/common/logos/logo-mysql-170x115.png)
 
 - **Programming Language**: Java
