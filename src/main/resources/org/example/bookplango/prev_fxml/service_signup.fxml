@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="404.0" prefWidth="475.0" style="-fx-background-color: #75d7c4;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.SceneController">
+   <children>
+      <Label alignment="CENTER" layoutX="-1.0" layoutY="-2.0" prefHeight="65.0" prefWidth="475.0" style="-fx-background-color: #d1f2eb; -fx-border-color: #138d75; -fx-border-width: 1.5px;" text="Create Service Account" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="63.0" layoutY="150.0" text="Phone" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="service_name" alignment="CENTER" disable="true" layoutX="63.0" layoutY="182.0" text="Service Name" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="service_phone_Text" layoutX="215.0" layoutY="151.0" prefHeight="27.0" prefWidth="196.0" promptText="Phone" style="-fx-border-color: #138d75;" />
+      <TextField fx:id="service_name_Text" disable="true" layoutX="215.0" layoutY="183.0" prefHeight="27.0" prefWidth="196.0" promptText="Servicename" style="-fx-border-color: #138d75;" />
+      <Label alignment="CENTER" layoutX="64.0" layoutY="282.0" text="Password" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" layoutX="187.0" layoutY="321.0" mnemonicParsing="false" onAction="#serviceonsignupButtonclick" prefHeight="27.0" prefWidth="101.0" text="Sign up" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchtoserviceSigninScene" style="-fx-background-color: #a61247;" text="Back" textFill="#fffafa">
+         <font>
+            <Font name="Calibri Bold" size="11.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="service_pass_Text" layoutX="216.0" layoutY="283.0" prefHeight="27.0" prefWidth="196.0" promptText="Password" style="-fx-border-color: #138d75;" />
+      <Label fx:id="servicelogin_label" alignment="CENTER" layoutX="15.0" layoutY="366.0" prefHeight="27.0" prefWidth="443.0" textFill="#0632ab">
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="63.0" layoutY="119.0" text="Service_ID" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="service_ID_Text" layoutX="215.0" layoutY="120.0" prefHeight="27.0" prefWidth="196.0" promptText="ID" style="-fx-border-color: #138d75;" />
+      <Button fx:id="SignUpHotel" alignment="CENTER" layoutX="122.0" layoutY="69.0" mnemonicParsing="false" onAction="#hotel_click_signup" prefHeight="34.0" prefWidth="69.0" text="Hotel" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="SignUpCar" alignment="CENTER" layoutX="280.0" layoutY="69.0" mnemonicParsing="false" onAction="#car_click_signup" prefHeight="34.0" prefWidth="69.0" text="Car" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="63.0" layoutY="250.0" text="Location" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="service_hotel_floor" alignment="CENTER" disable="true" layoutX="63.0" layoutY="216.0" text="Floor" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="service_hotel_floor_text" disable="true" layoutX="215.0" layoutY="217.0" prefHeight="27.0" prefWidth="196.0" promptText="Floor" style="-fx-border-color: #138d75;" />
+      <ComboBox fx:id="serviceLocation" layoutX="216.0" layoutY="251.0" prefHeight="25.0" prefWidth="196.0" />
+   </children>
+</AnchorPane>

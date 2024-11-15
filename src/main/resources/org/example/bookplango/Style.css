@@ -1,0 +1,47 @@
+.button {
+    -fx-background-radius: 60px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 3, 3);
+}
+
+  .button:hover {
+  -fx-background-color: #ABD6F1 ;//#99e6ff;
+  -fx-text-fill: #001a0d ; //  #D1F2EB  #1a0000
+  -fx-transition: 0.7s;
+  }
+/*
+.table-view .corner
+!*#service_pass_Text {
+-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 3, 3);
+}*!
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: red;
+}
+.table-row-cell:odd{
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even{
+    -fx-background-color: #1dbbdd11;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}*/
+
+/* Change the background color of the entire scene */
+.pane-background {
+    -fx-background-color: lightblue;
+}
+
+/* Change the background color of a specific pane */
+.pane-background {
+    -fx-background-color: lightgreen;
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="404.0" prefWidth="475.0" style="-fx-background-color: #75d7c4; -fx-border-width: 2px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.Traveler_Car_Searching">
+   <children>
+      <AnchorPane prefHeight="511.0" prefWidth="735.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #00bfff; -fx-border-width: 2px;">
+         <children>
+            <Label alignment="CENTER" layoutX="307.0" layoutY="14.0" prefHeight="29.0" prefWidth="154.0" text="HELLO," textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="31.0" />
+               </font>
+            </Label>
+            <Label fx:id="ID" alignment="CENTER" layoutX="312.0" layoutY="50.0" prefHeight="36.0" prefWidth="144.0" textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="29.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="240.0" layoutY="86.0" prefHeight="36.0" prefWidth="288.0" text="Car Booking" textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="31.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="651.0" layoutY="161.0" mnemonicParsing="false" onAction="#setSearch" prefHeight="25.0" prefWidth="68.0" text="Search" textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="37.0" layoutY="32.0" mnemonicParsing="false" onAction="#setBack" prefHeight="23.0" prefWidth="45.0" style="-fx-background-color: #a61247;" text="Back" textFill="#fffafa">
+               <font>
+                  <Font name="Calibri Bold" size="11.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="29.0" layoutY="165.0" prefHeight="15.0" prefWidth="68.0" text="From" textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="254.0" layoutY="165.0" prefHeight="23.0" prefWidth="33.0" text="To" textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="From" layoutX="100.0" layoutY="164.0" prefHeight="25.0" prefWidth="134.0" style="-fx-border-color: #00bfff;" />
+            <ComboBox fx:id="To" layoutX="293.0" layoutY="165.0" prefHeight="25.0" prefWidth="134.0" style="-fx-border-color: #00bfff;" />
+            <TableView fx:id="carSearchTable" layoutX="62.0" layoutY="199.0" prefHeight="255.0" prefWidth="623.0" style="-fx-border-color: #00bfff;">
+               <columns>
+                  <TableColumn fx:id="VehicleType" prefWidth="204.0" text="Vehicle Type" />
+                  <TableColumn fx:id="SeatNum" prefWidth="158.0" text="Seat Number" />
+                  <TableColumn fx:id="Price" prefWidth="136.0" text="Price" />
+                  <TableColumn fx:id="Select" prefWidth="127.0" />
+               </columns>
+            </TableView>
+            <Label fx:id="carLabel" alignment="CENTER_RIGHT" layoutX="133.0" layoutY="464.0" prefHeight="28.0" prefWidth="246.0" textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="seeDetails" alignment="CENTER" contentDisplay="CENTER" layoutX="393.0" layoutY="464.0" mnemonicParsing="false" onAction="#setSeeDetails" prefHeight="28.0" prefWidth="108.0" text="See Details" textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+            <Label fx:id="message" alignment="CENTER" layoutX="217.0" layoutY="129.0" prefHeight="23.0" prefWidth="334.0" textFill="#138d75">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="datePicker" layoutX="493.0" layoutY="164.0" prefHeight="25.0" prefWidth="144.0" style="-fx-border-color: #00bfff;" />
+            <Label alignment="CENTER" layoutX="439.0" layoutY="165.0" prefHeight="23.0" prefWidth="55.0" text="Date" textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

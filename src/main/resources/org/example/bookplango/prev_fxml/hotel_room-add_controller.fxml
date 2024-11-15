@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="404.0" prefWidth="475.0" style="-fx-background-color: #00cc99; -fx-border-width: 2px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.Hotel_room_add_controller">
+    <children>
+        <AnchorPane layoutX="185.0" prefHeight="511.0" prefWidth="517.0" style="-fx-background-color: #d1f2eb; -fx-border-color: #29654f; -fx-border-width: 2px;">
+            <children>
+                <Label alignment="CENTER" layoutX="184.0" layoutY="14.0" prefHeight="29.0" prefWidth="154.0" text="HELLO," textFill="#138d75">
+                    <font>
+                        <Font name="Calibri Bold" size="31.0" />
+                    </font>
+                </Label>
+                <Label fx:id="Welcome" alignment="CENTER" layoutX="189.0" layoutY="52.0" prefHeight="36.0" prefWidth="144.0" textFill="#0d1ad0">
+                    <font>
+                        <Font name="Calibri Bold" size="29.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="160.0" layoutY="92.0" prefHeight="36.0" prefWidth="200.0" text="Add Room" textFill="#138d75">
+                    <font>
+                        <Font name="Calibri Bold" size="31.0" />
+                    </font>
+                </Label>
+                <Label fx:id="notification" alignment="CENTER" layoutX="113.0" layoutY="130.0" prefHeight="21.0" prefWidth="297.0" textFill="#155447">
+                    <font>
+                        <Font name="Calibri Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="81.0" layoutY="182.0" prefHeight="36.0" prefWidth="120.0" text="Floor" />
+                <Label layoutX="78.0" layoutY="277.0" prefHeight="36.0" prefWidth="120.0" text="Bedding" />
+                <Label layoutX="78.0" layoutY="320.0" prefHeight="36.0" prefWidth="120.0" text="AC" />
+                <Label layoutX="78.0" layoutY="368.0" prefHeight="36.0" prefWidth="120.0" text="Price (/Night)" />
+                <TextField fx:id="PriceText" layoutX="203.0" layoutY="368.0" prefHeight="36.0" prefWidth="237.0" />
+                <Button fx:id="AddRoom" layoutX="207.0" layoutY="429.0" mnemonicParsing="false" onAction="#setAddRoom" prefHeight="36.0" prefWidth="109.0" text="ADD ROOM" />
+                <ComboBox fx:id="SelectFloor" layoutX="206.0" layoutY="182.0" prefHeight="36.0" prefWidth="237.0" />
+                <ComboBox fx:id="SelectBedding" layoutX="203.0" layoutY="277.0" prefHeight="36.0" prefWidth="237.0" />
+                <ComboBox fx:id="SelectACType" layoutX="203.0" layoutY="320.0" prefHeight="36.0" prefWidth="237.0" />
+                <Label layoutX="79.0" layoutY="229.0" prefHeight="36.0" prefWidth="120.0" text="Room Number" />
+                <TextField fx:id="RoomNumText" layoutX="204.0" layoutY="229.0" prefHeight="36.0" prefWidth="237.0" />
+            </children>
+        </AnchorPane>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-18.0" layoutY="176.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="200.0" text="Add Room" textFill="#138d75">
+            <font>
+                <Font name="Calibri Bold" size="25.0" />
+            </font>
+        </Button>
+        <Button alignment="CENTER" layoutX="20.0" layoutY="21.0" mnemonicParsing="false" onAction="#back" prefHeight="21.0" prefWidth="50.0" style="-fx-background-color: #a61247;" text="back" textFill="#fffafa">
+            <font>
+                <Font name="Calibri Bold" size="11.0" />
+            </font>
+        </Button>
+        <Label alignment="CENTER" layoutX="14.0" layoutY="66.0" prefHeight="36.0" prefWidth="154.0" text="BookPlanGo" textFill="#110fb9">
+            <font>
+                <Font name="Calibri Bold" size="30.0" />
+            </font>
+        </Label>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-30.0" layoutY="246.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Booking" textFill="#138d75">
+            <font>
+                <Font name="Calibri Bold" size="25.0" />
+            </font>
+        </Button>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-30.0" layoutY="371.0" mnemonicParsing="false" onAction="#switchtoHotelmessageScene" prefHeight="13.0" prefWidth="200.0" text="Messages" textFill="#138d75">
+            <font>
+                <Font name="Calibri Bold" size="25.0" />
+            </font>
+        </Button>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-31.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchtoHoteldashboardScene" prefHeight="27.0" prefWidth="200.0" text="Dashboard" textFill="#138d75">
+            <font>
+                <Font name="Calibri Bold" size="25.0" />
+            </font>
+        </Button>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-30.0" layoutY="310.0" mnemonicParsing="false" onAction="#switchtoserviceUpdateProfile" prefHeight="28.0" prefWidth="200.0" text="Edit Profile" textFill="#138d75">
+            <font>
+                <Font name="Calibri Bold" size="25.0" />
+            </font>
+        </Button>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-30.0" layoutY="431.0" mnemonicParsing="false" onAction="#switchtoserviceSigninScene" prefHeight="13.0" prefWidth="200.0" text="Log out" textFill="#138d75">
+            <font>
+                <Font name="Calibri Bold" size="25.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

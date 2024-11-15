@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="511.0" prefWidth="705.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #00bfff; -fx-border-width: 2px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.Hotel_details_Controller">
+   <children>
+      <Button alignment="CENTER" layoutX="20.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchtouserBookingHotelScene" style="-fx-background-color: #a61247;" text="Back" textFill="#fffafa">
+         <font>
+            <Font name="Calibri Bold" size="11.0" />
+         </font>
+      </Button>
+      <Label fx:id="hotel_Name" alignment="CENTER" layoutX="134.0" layoutY="42.0" prefHeight="45.0" prefWidth="197.0" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="hotel_location" alignment="CENTER" layoutX="134.0" layoutY="95.0" prefHeight="45.0" prefWidth="197.0" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="29.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imageview" fitHeight="204.0" fitWidth="236.0" layoutX="456.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+      <TableView fx:id="travelerHotelDetailsTableView" layoutX="14.0" layoutY="225.0" prefHeight="224.0" prefWidth="435.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #80ccff; -fx-border-width: 2px;">
+         <columns>
+            <TableColumn fx:id="travelerRoomNumberTableColumn" editable="false" prefWidth="121.0" text="Room Number" />
+            <TableColumn fx:id="travelerBeddingTableColumn" editable="false" prefWidth="134.0" text="Bedding" />
+            <TableColumn fx:id="travelerACTableColumn" prefWidth="60.0" text="AC" />
+            <TableColumn fx:id="travelerPriceTableColumn" prefWidth="115.0" text="Price" />
+         </columns>
+      </TableView>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="512.0" layoutY="444.0" mnemonicParsing="false" onAction="#Book_room_click" prefHeight="36.0" prefWidth="144.0" text="Book" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="19.0" />
+         </font>
+      </Button>
+      <Label fx:id="username_label_dashboard11" alignment="CENTER" layoutX="101.0" layoutY="180.0" prefHeight="45.0" prefWidth="263.0" text="Available Rooms" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="29.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="pick_end" layoutX="497.0" layoutY="401.0" style="-fx-background-color: #80ccff;" />
+      <Label fx:id="booking_label" alignment="CENTER" layoutX="456.0" layoutY="233.0" prefHeight="45.0" prefWidth="236.0" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="21.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="pick_start" layoutX="497.0" layoutY="345.0" style="-fx-background-color: #80ccff;" />
+      <Label fx:id="username_label_dashboard111" alignment="CENTER" layoutX="494.0" layoutY="318.0" prefHeight="25.0" prefWidth="174.0" text="Start date" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="username_label_dashboard1111" alignment="CENTER" layoutX="494.0" layoutY="374.0" prefHeight="25.0" prefWidth="174.0" text="End date" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="expence" alignment="CENTER" editable="false" layoutX="497.0" layoutY="291.0" prefHeight="25.0" prefWidth="174.0" style="-fx-border-color: #80ccff;">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </TextField>
+      <Label fx:id="booking_label1" alignment="CENTER" layoutX="57.0" layoutY="451.0" prefHeight="30.0" prefWidth="349.0" text="Your Booking Start Date must be today or tomorrow" textFill="#211ae1">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

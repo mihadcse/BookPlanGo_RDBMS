@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="704.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #ABD6F1; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.HotelEditRoom">
+   <children>
+      <Button layoutX="265.0" layoutY="351.0" mnemonicParsing="false" onAction="#setDone" prefHeight="51.0" prefWidth="176.0" style="-fx-border-color: #ABD6F1; -fx-border-width: 1.5px;" text="DONE" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font></Button>
+      <Label alignment="CENTER" layoutX="264.0" layoutY="33.0" prefHeight="38.0" prefWidth="176.0" text="Edit Room" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="rn" layoutX="312.0" layoutY="79.0" prefHeight="38.0" prefWidth="81.0" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="164.0" layoutY="192.0" prefHeight="36.0" prefWidth="120.0" text="Bedding" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="164.0" layoutY="235.0" prefHeight="36.0" prefWidth="120.0" text="AC" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="153.0" layoutY="283.0" prefHeight="36.0" prefWidth="158.0" text="Price (/Night)" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font></Label>
+      <TextField fx:id="price" layoutX="316.0" layoutY="283.0" prefHeight="36.0" prefWidth="237.0" style="-fx-border-color: #ABD6F1; -fx-border-width: 1.5px;" />
+      <ComboBox fx:id="Bedding" layoutX="316.0" layoutY="192.0" prefHeight="36.0" prefWidth="237.0" style="-fx-border-color: #ABD6F1; -fx-border-width: 1.5px;" />
+      <ComboBox fx:id="AC" layoutX="316.0" layoutY="235.0" prefHeight="36.0" prefWidth="237.0" style="-fx-border-color: #ABD6F1; -fx-border-width: 1.5px;" />
+      <Label fx:id="message" alignment="CENTER" layoutX="213.0" layoutY="131.0" prefHeight="38.0" prefWidth="279.0" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" layoutX="30.0" layoutY="31.0" mnemonicParsing="false" onAction="#back" prefHeight="21.0" prefWidth="50.0" style="-fx-background-color: #a61247;" text="Back" textFill="#fffafa">
+         <font>
+            <Font name="Calibri Bold" size="11.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

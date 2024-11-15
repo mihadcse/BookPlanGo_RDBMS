@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.CarWelcomeController">
+   <children>
+      <Label layoutX="254.0" layoutY="41.0" prefHeight="57.0" prefWidth="171.0" text="WELCOME,">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="ID" layoutX="437.0" layoutY="41.0" prefHeight="57.0" prefWidth="106.0" text="ID">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="220.0" layoutY="171.0" prefHeight="57.0" prefWidth="208.0" text="Total Vehicle">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="Total" layoutX="440.0" layoutY="171.0" prefHeight="57.0" prefWidth="62.0" text="num">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="220.0" layoutY="227.0" prefHeight="57.0" prefWidth="208.0" text="Booked Vehicle">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="Booked" layoutX="440.0" layoutY="227.0" prefHeight="57.0" prefWidth="62.0" text="num">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="220.0" layoutY="284.0" prefHeight="57.0" prefWidth="208.0" text="Available Vehicle">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="Available" layoutX="440.0" layoutY="284.0" prefHeight="57.0" prefWidth="62.0" text="num">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="198.0" layoutY="104.0" prefHeight="57.0" prefWidth="317.0" text="Select option to view">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="120.0" mnemonicParsing="false" onAction="#carDashboard" prefHeight="50.0" prefWidth="160.0" text="DASHBOARD">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="191.0" mnemonicParsing="false" onAction="#switchtoserviceUpdateProfile" prefHeight="50.0" prefWidth="160.0" text="EDIT PROFILE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#AddVehicle" prefHeight="50.0" prefWidth="160.0" text="ADD VEHICLE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="433.0" mnemonicParsing="false" onAction="#switchtoserviceSigninScene" prefHeight="50.0" prefWidth="160.0" text="LOG OUT">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Label layoutX="199.0" layoutY="354.0" prefHeight="57.0" prefWidth="229.0" text="Unavailable Vehicle">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="Unavailable" layoutX="440.0" layoutY="354.0" prefHeight="57.0" prefWidth="62.0" text="num">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="304.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="MESSAGE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="369.0" mnemonicParsing="false" onAction="#Booking" prefHeight="50.0" prefWidth="160.0" text="BOOKING">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
