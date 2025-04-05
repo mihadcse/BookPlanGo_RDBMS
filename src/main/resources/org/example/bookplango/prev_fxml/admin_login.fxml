@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="404.0" prefWidth="475.0" style="-fx-background-color: #b3b3ff; -fx-border-color: #138d75;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.SceneController">
+   <children>
+      <TextField fx:id="admin_server" layoutX="237.0" layoutY="143.0" prefHeight="25.0" prefWidth="195.0" promptText="Server" style="-fx-border-color: #138d75;" />
+      <Label alignment="CENTER" layoutX="79.0" layoutY="143.0" text="Servername" textFill="#2e2eda">
+         <font>
+            <Font name="Calibri Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="56.0" layoutY="247.0" prefHeight="28.0" prefWidth="158.0" text="Password" textFill="#2e2eda">
+         <font>
+            <Font name="Calibri Bold" size="22.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="admin_pass" layoutX="237.0" layoutY="247.0" prefHeight="25.0" prefWidth="195.0" promptText="Password" style="-fx-border-color: #138d75;" />
+      <Button fx:id="login_button" layoutX="150.0" layoutY="335.0" mnemonicParsing="false" onAction="#adminloginbuttonclick" prefHeight="30.0" prefWidth="175.0" text="Login" textFill="#2e2eda">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutY="-1.0" prefHeight="107.0" prefWidth="483.0" style="-fx-background-color: #8080ff; -fx-border-color: #138d75; -fx-border-width: 1.5px;" text="Admin Sign In" textFill="#0b0bd9">
+         <font>
+            <Font name="Calibri Bold" size="39.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchtoUserScene" style="-fx-background-color: #a61247;" text="Back" textFill="#f8f8f8">
+         <font>
+            <Font name="Calibri Bold" size="11.0" />
+         </font>
+      </Button>
+      <Label fx:id="admin_login_label" alignment="CENTER" layoutX="119.0" layoutY="77.0" prefHeight="30.0" prefWidth="242.0" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="admin_user" layoutX="237.0" layoutY="197.0" prefHeight="25.0" prefWidth="195.0" promptText="ServerUser" style="-fx-border-color: #138d75;" />
+      <Label alignment="CENTER" layoutX="85.0" layoutY="198.0" text="ServerUser" textFill="#2e2eda">
+         <font>
+            <Font name="Calibri Bold" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

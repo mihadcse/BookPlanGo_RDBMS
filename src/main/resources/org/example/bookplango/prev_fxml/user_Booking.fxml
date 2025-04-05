@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="404.0" prefWidth="475.0" style="-fx-background-color: #75d7c4; -fx-border-width: 2px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.UserWelcomeDashboard">
+   <children>
+      <AnchorPane layoutX="185.0" prefHeight="511.0" prefWidth="517.0" style="-fx-background-color: #d1f2eb; -fx-border-color: #29654f; -fx-border-width: 2px;">
+         <children>
+            <Label alignment="CENTER" layoutX="184.0" layoutY="14.0" prefHeight="29.0" prefWidth="154.0" text="HELLO," textFill="#138d75">
+               <font>
+                  <Font name="Calibri Bold" size="31.0" />
+               </font>
+            </Label>
+            <Label fx:id="username_label_dashboard" alignment="CENTER" layoutX="189.0" layoutY="58.0" prefHeight="36.0" prefWidth="144.0" textFill="#0c1fcc">
+               <font>
+                  <Font name="Calibri Bold" size="29.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="116.0" layoutY="109.0" prefHeight="36.0" prefWidth="288.0" text="Booking" textFill="#138d75">
+               <font>
+                  <Font name="Calibri Bold" size="31.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="339.0" fitWidth="527.0" layoutX="7.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: Overlay;">
+               <image>
+                  <Image url="@Bangladesh.jpg" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="188.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchtouserBooking_HotelScene" prefHeight="46.0" prefWidth="144.0" text="Hotel" textFill="#138d75">
+               <font>
+                  <Font name="Calibri Bold" size="25.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="188.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchtouserBooking_CarScene" prefHeight="46.0" prefWidth="144.0" text="Car" textFill="#138d75">
+               <font>
+                  <Font name="Calibri Bold" size="25.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="117.0" layoutY="209.0" prefHeight="36.0" prefWidth="304.0" text="Select Booking Options" textFill="#138d75">
+               <font>
+                  <Font name="Calibri Bold" size="31.0" />
+               </font>
+            </Label>
+            <Label fx:id="BookingCondirm" alignment="CENTER" layoutX="140.0" layoutY="177.0" prefHeight="17.0" prefWidth="259.0" />
+         </children>
+      </AnchorPane>
+      <Button alignment="CENTER" layoutX="20.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchtouserSigninScene" style="-fx-background-color: #a61247;" text="Log out" textFill="#fffafa">
+         <font>
+            <Font name="Calibri Bold" size="11.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="66.0" prefHeight="36.0" prefWidth="154.0" text="BookPlanGo" textFill="#110fb9">
+         <font>
+            <Font name="Calibri Bold" size="30.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-34.0" layoutY="189.0" mnemonicParsing="false" onAction="#switchtouserdashboardScene" prefHeight="53.0" prefWidth="200.0" text="Dashboard" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-18.0" layoutY="266.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Booking" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-35.0" layoutY="343.0" mnemonicParsing="false" onAction="#switchtouserPlanningScene" prefHeight="28.0" prefWidth="200.0" text="Planning" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-35.0" layoutY="413.0" mnemonicParsing="false" onAction="#switchtouserMessageScene" prefHeight="13.0" prefWidth="200.0" text="Messages" textFill="#138d75">
+         <font>
+            <Font name="Calibri Bold" size="25.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="511.0" prefWidth="506.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #ABD6F1; -fx-border-width: 2px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.Traveler_Message_Controller">
+   <children>
+      <Button alignment="CENTER" layoutX="20.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchtouserdashboardScene" style="-fx-background-color: #a61247;" text="Back" textFill="#fffafa">
+         <font>
+            <Font name="Calibri Bold" size="11.0" />
+         </font>
+      </Button>
+      <Label fx:id="username_label_dashboard11" alignment="CENTER" layoutX="255.0" layoutY="8.0" prefHeight="45.0" prefWidth="197.0" text="Message" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="35.0" />
+         </font>
+      </Label>
+      <Label fx:id="booking_label" alignment="CENTER" layoutX="456.0" layoutY="233.0" prefHeight="45.0" prefWidth="236.0" textFill="#0c1fcc">
+         <font>
+            <Font name="Calibri Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="send" alignment="CENTER" contentDisplay="CENTER" layoutX="580.0" layoutY="414.0" mnemonicParsing="false" onAction="#click_message" prefHeight="36.0" prefWidth="100.0" text="SEND" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="19.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="message_send_text" layoutX="188.0" layoutY="406.0" prefHeight="49.0" prefWidth="381.0" promptText="Write Message Here............" style="-fx-border-color: #80ccff; -fx-border-width: 1.5px;">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </TextArea>
+      <TableView fx:id="travelerMessageTableView" layoutX="185.0" layoutY="60.0" prefHeight="219.0" prefWidth="495.0" style="-fx-border-color: #80ccff; -fx-border-width: 1.5px;">
+         <columns>
+            <TableColumn fx:id="travelerNameTableColumn" editable="false" prefWidth="121.0" text="Name" />
+            <TableColumn fx:id="travelerMessageTableColumn" editable="false" prefWidth="369.99998474121094" text="Message" />
+         </columns>
+      </TableView>
+      <Button fx:id="viewOrLoad" alignment="CENTER" contentDisplay="CENTER" layoutX="388.0" layoutY="285.0" mnemonicParsing="false" onAction="#click_view" prefHeight="29.0" prefWidth="67.0" text="VIEW" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="message_sent_label" alignment="CENTER" layoutX="310.0" layoutY="467.0" prefHeight="14.0" prefWidth="263.0" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="29.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="message_text_area_view" editable="false" layoutX="185.0" layoutY="325.0" prefHeight="73.0" prefWidth="495.0" promptText="Click View to see Message" style="-fx-border-color: #80ccff; -fx-border-width: 1.5px;">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </TextArea>
+      <ComboBox fx:id="reciever" layoutX="12.0" layoutY="69.0" onAction="#setReciever" prefHeight="25.0" prefWidth="151.0" />
+      <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" layoutX="54.0" layoutY="99.0" mnemonicParsing="false" onAction="#setAdd" prefHeight="29.0" prefWidth="67.0" text="ADD" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </Button>
+      <TableView fx:id="travelerChatList" layoutX="12.0" layoutY="145.0" prefHeight="279.0" prefWidth="151.0" style="-fx-border-color: #80ccff; -fx-border-width: 1.5px;">
+         <columns>
+            <TableColumn fx:id="travelerChatColumn" editable="false" prefWidth="146.66665172576904" text="Name" />
+         </columns>
+      </TableView>
+      <Button fx:id="open" alignment="CENTER" contentDisplay="CENTER" layoutX="54.0" layoutY="435.0" mnemonicParsing="false" onAction="#setOpen" prefHeight="29.0" prefWidth="67.0" text="OPEN" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

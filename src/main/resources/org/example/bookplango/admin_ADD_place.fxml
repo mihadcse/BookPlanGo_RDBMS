@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="511.0" prefWidth="687.0" style="-fx-background-color: #EBF5FB; -fx-border-width: 2px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.Admin_Add_Place">
+   <children>
+      <Button alignment="CENTER" layoutX="20.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchtoAdminDashboardScene" style="-fx-background-color: #a61247;" text="Back" textFill="#fffafa">
+         <font>
+            <Font name="Calibri Bold" size="11.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="408.0" mnemonicParsing="false" onAction="#addPlace" prefHeight="36.0" prefWidth="173.0" text="Add" textFill="#094adb">
+         <font>
+            <Font name="Calibri Bold" size="19.0" />
+         </font>
+      </Button>
+      <Label fx:id="place_division_label" alignment="CENTER" layoutX="247.0" layoutY="14.0" prefHeight="45.0" prefWidth="197.0" textFill="#0c1fcc">
+         <font>
+            <Font name="Calibri Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="hotel_Name11" alignment="CENTER" layoutX="144.0" layoutY="198.0" prefHeight="36.0" prefWidth="141.0" text="District" textFill="#0c1fcc">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hotel_Name111" alignment="CENTER" layoutX="144.0" layoutY="242.0" prefHeight="36.0" prefWidth="141.0" text="Division" textFill="#0c1fcc">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hotel_Name112" alignment="CENTER" layoutX="144.0" layoutY="152.0" prefHeight="36.0" prefWidth="141.0" text="Name" textFill="#0c1fcc">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="place_name_text" layoutX="302.0" layoutY="150.0" prefHeight="36.0" prefWidth="242.0" style="-fx-border-color: #80ccff;">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="place_district_text" layoutX="302.0" layoutY="197.0" prefHeight="36.0" prefWidth="242.0" style="-fx-border-color: #80ccff;">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="place_division_text" layoutX="302.0" layoutY="241.0" prefHeight="36.0" prefWidth="242.0" style="-fx-border-color: #80ccff;">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </TextField>
+      <Label fx:id="hotel_Name1111" alignment="CENTER" layoutX="144.0" layoutY="290.0" prefHeight="36.0" prefWidth="141.0" text="Image Path" textFill="#0c1fcc">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="place_image_text" layoutX="302.0" layoutY="289.0" prefHeight="28.0" prefWidth="242.0" style="-fx-border-color: #80ccff;">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </TextField>
+      <Label fx:id="hotel_Name1121" alignment="CENTER" layoutX="255.0" layoutY="47.0" prefHeight="52.0" prefWidth="181.0" text="ADD PLACE " textFill="#0c1fcc">
+         <font>
+            <Font name="Calibri Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="success_label" alignment="CENTER" layoutX="217.0" layoutY="340.0" prefHeight="52.0" prefWidth="258.0" textFill="#0c1fcc">
+         <font>
+            <Font name="Calibri Bold" size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
