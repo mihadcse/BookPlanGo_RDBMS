@@ -32,8 +32,7 @@ CREATE TABLE `h_roomdetails` (
   `room_price` int DEFAULT NULL,
   `customer_id` int DEFAULT NULL,
   `book_start_date` date DEFAULT NULL,
-  `book_end_date` date DEFAULT NULL,
-  PRIMARY KEY (`room_num`)
+  `book_end_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -43,6 +42,7 @@ CREATE TABLE `h_roomdetails` (
 
 LOCK TABLES `h_roomdetails` WRITE;
 /*!40000 ALTER TABLE `h_roomdetails` DISABLE KEYS */;
+INSERT INTO `h_roomdetails` VALUES (1234,'111','Double','Booked','AC',1,4000,1711111,'2025-03-07','2025-03-10'),(1234,'123','Single','Available','Non AC',1,1111,NULL,NULL,NULL),(1234,'222','Single','Available','AC',2,2222,NULL,NULL,NULL),(123456,'233','Single','Available','AC',2,3333,NULL,NULL,NULL),(1234,'333','Single','Available','Non AC',3,3333,NULL,NULL,NULL),(1235,'601','Double','Available','AC',6,1100,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `h_roomdetails` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-15 16:20:00
+-- Dump completed on 2025-03-21 22:24:47

@@ -31,6 +31,7 @@ CREATE TABLE `serviceprovider_info` (
   `service_location` varchar(45) NOT NULL,
   `floor` int DEFAULT NULL,
   `service_approval` varchar(50) DEFAULT NULL,
+  `service_image` varchar(450) DEFAULT NULL,
   PRIMARY KEY (`service_id`),
   UNIQUE KEY `service_id_UNIQUE` (`service_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -42,6 +43,7 @@ CREATE TABLE `serviceprovider_info` (
 
 LOCK TABLES `serviceprovider_info` WRITE;
 /*!40000 ALTER TABLE `serviceprovider_info` DISABLE KEYS */;
+INSERT INTO `serviceprovider_info` VALUES (1234,'H_123','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',1777777700,'Hotel','Sylhet',3,'Approved',NULL),(1235,'ZarifHotel','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',1851472695,'Hotel','Chattogram',11,'Approved',NULL),(123456,'ZARIF_Hotel','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1888888881,'Hotel','Chattogram',4,'Approved',NULL);
 /*!40000 ALTER TABLE `serviceprovider_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-15 16:19:58
+-- Dump completed on 2025-03-21 22:24:46

@@ -37,6 +37,7 @@ CREATE TABLE `traveler_fav_places` (
 
 LOCK TABLES `traveler_fav_places` WRITE;
 /*!40000 ALTER TABLE `traveler_fav_places` DISABLE KEYS */;
+INSERT INTO `traveler_fav_places` VALUES (1324232,'sadsd','asdas','adasd','D:Download_sphone_back/1.jpg'),(1711111,'sadsd','asdas','adasd','D:Download_sphone_back/1.jpg');
 /*!40000 ALTER TABLE `traveler_fav_places` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-15 16:20:00
+-- Dump completed on 2025-03-21 22:24:47

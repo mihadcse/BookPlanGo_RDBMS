@@ -1,5 +1,7 @@
 package org.example.bookplango;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,6 +39,24 @@ public class Statistics {
         stage.setResizable(false);
         stage.show();
     }
+
+    @FXML
+    private TableView<Statistics_Table> hotelstatTableView;
+    @FXML
+    private TableColumn<Statistics_Table,String> hotelNameTableColumn;
+    @FXML
+    private TableColumn<Statistics_Table,Integer>hotelCountTableColumn;
+
+    ObservableList<Statistics_Table> statisticsTablesObservableList = FXCollections.observableArrayList();
+
+    @FXML
+    private TableView<Statistics_Table> carstatTableView;
+    @FXML
+    private TableColumn<Statistics_Table,Integer> carIDTableColumn;
+    @FXML
+    private TableColumn<Statistics_Table,Integer>carCountTableColumn;
+
+    ObservableList<Statistics_Table> statisticsCarTablesObservableList = FXCollections.observableArrayList();
 
     public void initialize() {
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -64,6 +87,43 @@ public class Statistics {
             //total_service_provider.setText(String.valueOf(totalServiceProviders));
             total = totalUsers + totalServiceProviders;
             total_total.setText(String.valueOf(total));
+
+            // GET top hotels // GROUP BY ORDER BY
+            ResultSet hotelResult = statement.executeQuery("SELECT hotel_name, COUNT(*) AS visit_count\n" +
+                    "FROM bookplango.tourdetails\n" +
+                    "GROUP BY hotel_name\n" +
+                    "ORDER BY visit_count DESC\n" +
+                    "LIMIT 5;");
+            while (hotelResult.next()) {
+                String queryName = hotelResult.getString("hotel_name");
+                Integer queryCount = hotelResult.getInt("visit_count");
+                statisticsTablesObservableList.add(new Statistics_Table(queryName, queryCount));
+            }
+            hotelResult.close();
+
+            hotelNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+            hotelCountTableColumn.setCellValueFactory (new PropertyValueFactory<>("count"));
+
+            hotelstatTableView.setItems (statisticsTablesObservableList);
+
+            // GET top cars // GROUP BY ORDER BY
+            ResultSet carResult = statement.executeQuery("SELECT CarID, COUNT(*) AS booking_count\n" +
+                    "FROM bookplango.carbookdetails\n" +
+                    "GROUP BY CarID\n" +
+                    "ORDER BY booking_count DESC\n" +
+                    "LIMIT 5;");
+            while (carResult.next()) {
+                Integer queryID = carResult.getInt("carID");
+                Integer queryCount = carResult.getInt("booking_count");
+                statisticsCarTablesObservableList.add(new Statistics_Table(queryID, queryCount));
+            }
+            carResult.close();
+
+            carIDTableColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+            carCountTableColumn.setCellValueFactory (new PropertyValueFactory<>("count"));
+
+            carstatTableView.setItems (statisticsCarTablesObservableList);
+
 
         } catch (SQLException e) {
             Logger.getLogger(Admin_Dashboard_Controller.class.getName()).log(Level.SEVERE, null, e);
