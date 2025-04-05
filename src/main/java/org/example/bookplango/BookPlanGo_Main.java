@@ -13,7 +13,7 @@ public class BookPlanGo_Main extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(BookPlanGo_Main.class.getResource("selectuser.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("selectuser.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 475, 404);
+        Scene scene = new Scene(fxmlLoader.load(), 492, 452);
 
         stage.setTitle("BookPlanGo!");
         stage.setResizable(false);

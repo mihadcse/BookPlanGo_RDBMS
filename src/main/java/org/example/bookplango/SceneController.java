@@ -762,6 +762,16 @@ public class SceneController {
         //username_label.setText(username_Text.getText());
     }
 
+    public void switchtostatisticsScene(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("statistics.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        //username_label.setText(username_Text.getText());
+    }
+
     public void select_hotel(ActionEvent event)
     {
         hotel_clicked = 1;
@@ -784,6 +794,14 @@ public class SceneController {
             admin_login_label.setText("Invalid");
         }
     }
+
+    public void statisticsbuttonclick(ActionEvent event) throws IOException {
+        System.out.println("statistics button clicked");
+        switchtostatisticsScene(event);
+    }
+
+
+
     public void useronloginButtonclick(ActionEvent event) throws IOException {
         if (username_Text.getText().isBlank() == false && password_text.getText().isBlank() == false) {
             uservalidateLogin();
