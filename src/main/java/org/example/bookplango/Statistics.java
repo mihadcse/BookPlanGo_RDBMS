@@ -29,6 +29,8 @@ public class Statistics {
 
     @FXML
     private Label total_user,total_service_provider, total_total;
+    @FXML
+    private Label total_expenses;
 
 
     public void switchtoUserScene(ActionEvent event) throws IOException {
@@ -123,6 +125,14 @@ public class Statistics {
             carCountTableColumn.setCellValueFactory (new PropertyValueFactory<>("count"));
 
             carstatTableView.setItems (statisticsCarTablesObservableList);
+
+            // Get total expenses
+            ResultSet expensesResult = statement.executeQuery("SELECT SUM(Total_Expenses) FROM bookplango.tourdetails");
+            if (expensesResult.next()) {
+                int totalExpenses = expensesResult.getInt(1);
+                total_expenses.setText(String.valueOf(totalExpenses) + " BDT");
+            }
+            expensesResult.close();
 
 
         } catch (SQLException e) {

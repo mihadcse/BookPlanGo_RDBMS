@@ -59,7 +59,7 @@
             <Font name="Calibri Bold" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="username_label_dashboard1111321" alignment="CENTER" layoutX="427.0" layoutY="228.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: white;" textFill="#1a69eb">
+      <Label fx:id="total_expenses" alignment="CENTER" layoutX="427.0" layoutY="228.0" prefHeight="45.0" prefWidth="257.0" style="-fx-background-color: white;" textFill="#1a69eb">
          <font>
             <Font name="Calibri Bold" size="27.0" />
          </font>
