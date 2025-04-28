@@ -6,8 +6,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -19,8 +17,6 @@
          </font>
       </Button>
       <Label fx:id="username_label_dashboard11" alignment="CENTER" layoutX="255.0" layoutY="8.0" prefHeight="45.0" prefWidth="197.0" text="Message" textFill="#3498db">
-      <ImageView fx:id="imageview" fitHeight="204.0" fitWidth="236.0" layoutX="456.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="username_label_dashboard11" alignment="CENTER" layoutX="254.0" layoutY="20.0" prefHeight="45.0" prefWidth="197.0" text="Message" textFill="#3498db">
          <font>
             <Font name="Calibri Bold" size="35.0" />
          </font>

@@ -193,8 +193,8 @@ public class Admin_Message_Controller {
         res1.close();
 
         adminNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        adminMessageTableColumn.setCellValueFactory (new PropertyValueFactory<>("message"));
-        adminMessageTableView.setItems (admin_messageObservableList);
+        adminMessageTableColumn.setCellValueFactory(new PropertyValueFactory<>("message"));
+        adminMessageTableView.setItems(admin_messageObservableList);
     }
 
     @FXML
@@ -227,22 +227,6 @@ public class Admin_Message_Controller {
     public void click_message() throws SQLException {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        Statement statement2 = connectDB.createStatement();
-        /*String query_name = "Select NID from sys.userinfo where Username = '"+s+"'";
-        Statement statement2 = connectDB.createStatement();
-        ResultSet res = statement2.executeQuery(query_name);
-        while (res.next()) {
-            nid = res.getInt("NID");
-            System.out.println(nid);
-        }*/
-        String text = receiver_name.getText();
-        try {
-            Integer.parseInt(text);
-            detect_id = 1;
-            System.out.println(text + " is a number");
-        } catch (NumberFormatException e) {
-            System.out.println(text + " is a string");
-        }
 
         String query_insert = "INSERT INTO `bookplango`.`message`\n" +
                 "(`from_id`,\n" +

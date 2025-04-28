@@ -273,8 +273,6 @@ public class UserWelcomeDashboard {
         Statement statement0=connectDB.createStatement();
         ResultSet resultSet0=statement0.executeQuery("Select t.travelID from tourdetails t inner join userinfo u on t.traveler_nid=u.NID where u.Username='"+s+"' and t.Rated='N' and t.EndDate<NOW();");
 
-    public void setWelcome(String name)
-    {
         while(resultSet0.next()){
             hotel.add(resultSet0.getInt("travelID"));
         }

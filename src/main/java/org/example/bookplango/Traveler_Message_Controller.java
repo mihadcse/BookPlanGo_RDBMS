@@ -41,12 +41,9 @@ public class Traveler_Message_Controller {
     private Button open;
     @FXML
     private  Button add;
-    private TextField receiver_name;
     String s = "",Name;
     Integer nid;
 
-    public void setWelcome(String name)
-    {
     @FXML
     private TableView<Traveler_Message> travelerMessageTableView;
     @FXML
@@ -159,11 +156,6 @@ public class Traveler_Message_Controller {
 
     }
     @FXML
-    private TableView<Traveler_Message> travelerMessageTableView;
-    @FXML
-    private TableColumn<Traveler_Message,String> travelerNameTableColumn;
-    @FXML
-    private TableColumn<Traveler_Message,String>travelerMessageTableColumn;
     public void setPreviousMsg() throws SQLException {
         boolean b=false;
         travelerMessageTableView.setDisable(b);
@@ -172,28 +164,17 @@ public class Traveler_Message_Controller {
         message_text_area_view.setDisable(b);
         send.setDisable(b);
 
-    ObservableList<Traveler_Message> traveler_messageObservableList = FXCollections.observableArrayList();
 
         travelerMessageTableView.getItems().clear();
-    public void initialize() throws SQLException {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         String query_get_msg;
-            query_get_msg = "SELECT * FROM bookplango.message " +
-                    "WHERE (from_id = '" + name + "' OR to_name = '" + name+ "') " +
-                    "AND (from_id = '" + String.valueOf(nid) + "' OR to_name = '" + String.valueOf(nid) + "')" +
-                    "ORDER BY id DESC";
+        query_get_msg = "SELECT * FROM bookplango.message " +
+                "WHERE (from_id = '" + name + "' OR to_name = '" + name+ "') " +
+                "AND (from_id = '" + String.valueOf(nid) + "' OR to_name = '" + String.valueOf(nid) + "')" +
+                "ORDER BY id DESC";
 
-        String query_name = "Select NID from bookplango.userinfo where Username = '"+s+"'";
         Statement statement2 = connectDB.createStatement();
-        ResultSet res = statement2.executeQuery(query_name);
-        while (res.next()) {
-            nid = res.getInt("NID");
-            System.out.println(nid);
-        }
-        res.close();
-        String queryOutput = "Select * from message where to_id = '" + nid + "'";
-        ResultSet res1 = statement2.executeQuery(queryOutput);
         ResultSet res1 = statement2.executeQuery(query_get_msg);
 
         while (res1.next()) {
@@ -235,9 +216,9 @@ public class Traveler_Message_Controller {
     public void click_view()
     {
 
-            ObservableList<Traveler_Message> place_list;
-            place_list = travelerMessageTableView.getSelectionModel().getSelectedItems();
-            message_text_area_view.setText(place_list.get(0).getMessage());
+        ObservableList<Traveler_Message> place_list;
+        place_list = travelerMessageTableView.getSelectionModel().getSelectedItems();
+        message_text_area_view.setText(place_list.get(0).getMessage());
 
     }
 
@@ -255,8 +236,6 @@ public class Traveler_Message_Controller {
 
         String query_insert = "INSERT INTO `bookplango`.`message`\n" +
                 "(`from_id`,\n" +
-                "`to_id`,\n" +
-                "`from_name`,\n" +
                 "`to_name`,\n" +
                 "`message`)\n" +
                 "VALUES\n" +

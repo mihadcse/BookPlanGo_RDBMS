@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="475.0" style="-fx-background-color: #ABD6F1; -fx-border-color: #29654f; -fx-border-width: 1px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="492.0" style="-fx-background-color: #ABD6F1; -fx-border-color: #29654f; -fx-border-width: 1px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.SceneController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-3.0" prefHeight="137.0" prefWidth="481.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #29654f; -fx-border-width: 2px;" text="BookPlanGo" textFill="#3498db">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-3.0" layoutY="-5.0" prefHeight="142.0" prefWidth="499.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #29654f; -fx-border-width: 2px;" text="BookPlanGo" textFill="#3498db">
          <font>
             <Font name="Calibri Bold" size="65.0" />
          </font>
@@ -18,7 +18,7 @@
             <Font name="Calibri Bold" size="16.0" />
          </font>
       </Label>
-      <Button accessibleRoleDescription=")" layoutX="346.0" layoutY="248.0" mnemonicParsing="false" onAction="#switchtouserSigninScene" prefHeight="67.0" prefWidth="185.0" text="Traveler " textFill="#3498db">
+      <Button layoutX="346.0" layoutY="248.0" mnemonicParsing="false" onAction="#switchtouserSigninScene" prefHeight="67.0" prefWidth="185.0" text="Traveler " textFill="#3498db">
          <font>
             <Font name="Calibri Bold" size="22.0" />
          </font>
@@ -28,8 +28,13 @@
             <Font name="Calibri Bold" size="22.0" />
          </font>
       </Button>
-      <Separator layoutX="-3.0" layoutY="137.0" prefHeight="8.0" prefWidth="481.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;" />
-      <Button accessibleRoleDescription=")" layoutX="145.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchtoAdminSigninScene" prefHeight="57.0" prefWidth="185.0" text="Admin" textFill="#3498db">
+      <Separator layoutX="-4.0" layoutY="135.0" prefHeight="6.0" prefWidth="499.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;" />
+      <Button accessibleRoleDescription=")" layoutX="168.0" layoutY="258.0" mnemonicParsing="false" onAction="#switchtoAdminSigninScene" prefHeight="57.0" prefWidth="158.0" text="Admin" textFill="#3498db">
+         <font>
+            <Font name="Calibri Bold" size="22.0" />
+         </font>
+      </Button>
+      <Button accessibleRoleDescription=")" layoutX="168.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchtostatisticsScene" prefHeight="57.0" prefWidth="158.0" text="Statistics" textFill="#3498db">
          <font>
             <Font name="Calibri Bold" size="22.0" />
          </font>

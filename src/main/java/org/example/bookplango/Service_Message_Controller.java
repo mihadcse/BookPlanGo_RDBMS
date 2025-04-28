@@ -57,7 +57,6 @@ public class Service_Message_Controller {
     ObservableList<Traveler_chat_list> service_chatObservableList = FXCollections.observableArrayList();
 
     String S_ID;
-    String S_name;
     String name;
 
     public void setChat() throws SQLException {
@@ -94,8 +93,6 @@ public class Service_Message_Controller {
 
         serviceChatColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-    public void setWelcome(String name)
-    {
         serviceChatList.setItems(service_chatObservableList);
     }
 
@@ -108,9 +105,6 @@ public class Service_Message_Controller {
         send.setDisable(b);
         add.setDisable(b);
         //username_label_dashboard.setText(name);
-        System.out.println(name);
-        s = name;
-        S_ID = name;
         S_ID = n;
         setChat();
     }
@@ -124,7 +118,6 @@ public class Service_Message_Controller {
         stage.setScene(scene);
         stage.setResizable(false);
         HotelWelcomeDashboard hotelWelcomeDashboard = fxmlLoader.getController();
-        hotelWelcomeDashboard.setWelcome(s);
         hotelWelcomeDashboard.setWelcome(S_ID);
         stage.show();
     }
@@ -138,20 +131,11 @@ public class Service_Message_Controller {
         viewOrLoad.setDisable(b);
         message_text_area_view.setDisable(b);
         send.setDisable(b);
-    private TableView<Traveler_Message> serviceMessageTableView;
-    @FXML
-    private TableColumn<Traveler_Message,String> serviceNameTableColumn;
-    @FXML
-    private TableColumn<Traveler_Message,String>serviceMessageTableColumn;
 
-    ObservableList<Traveler_Message> service_messageObservableList = FXCollections.observableArrayList();
 
-    public void initialize() throws SQLException {
         serviceMessageTableView.getItems().clear();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        //Statement statement2 = connectDB.createStatement();
-        String query_name = "Select service_name from bookplango.serviceprovider_info where service_id = '"+s+"'";
         String query_get_msg;
         query_get_msg = "SELECT * FROM bookplango.message " +
                 "WHERE (from_id = '" + name + "' OR to_name = '" + name + "') " +
@@ -159,16 +143,6 @@ public class Service_Message_Controller {
                 "ORDER BY id DESC";
 
         Statement statement2 = connectDB.createStatement();
-        ResultSet res = statement2.executeQuery(query_name);
-        while (res.next()) {
-            S_name = res.getString("service_name");
-            /*System.out.println(S_name);
-            System.out.println(S_name);
-            System.out.println(S_name);
-            System.out.println(S_name);*/
-        }
-        String queryOutput = "Select * from message where to_name = '" + S_name + "'";
-        ResultSet res1 = statement2.executeQuery(queryOutput);
         ResultSet res1 = statement2.executeQuery(query_get_msg);
 
         while (res1.next()) {
@@ -216,7 +190,6 @@ public class Service_Message_Controller {
     {
         ObservableList<Traveler_Message> place_list;
         place_list = serviceMessageTableView.getSelectionModel().getSelectedItems();
-
         message_text_area_view.setText(place_list.get(0).getMessage());
     }
 
@@ -244,61 +217,6 @@ public class Service_Message_Controller {
         setChat();
         setPreviousMsg();
         statement.close();
-        //Statement statement2 = connectDB.createStatement();
-        String query_name = "Select service_name from bookplango.serviceprovider_info where service_id = '"+s+"'";
-        Statement statement2 = connectDB.createStatement();
-        ResultSet res = statement2.executeQuery(query_name);
-        while (res.next()) {
-            S_ID = res.getString("service_name");
-            System.out.println(S_ID);
-        }
-        if(receiver_name.getText().equals("Admin")) {
-            String query_insert1 = "INSERT INTO `bookplango`.`message`\n" +
-                    "(`from_id`,\n" +
-                    "`to_id`,\n" +
-                    "`from_name`,\n" +
-                    "`to_name`,\n" +
-                    "`message`)\n" +
-                    "VALUES\n" +
-                    "(null,\n" +
-                    "null,\n" +
-                    "'"+ S_ID +"',\n" +
-                    "'Admin',\n" +
-                    "'"+ message_send_text.getText() +"')";
-            Statement statement = connectDB.createStatement();
-            int rowsAffected1 = statement.executeUpdate(query_insert1);
-            if (rowsAffected1 > 0) {
-                message_sent_label.setText("Message Sent");
-                System.out.println("Message Sent");
-            } else {
-                message_sent_label.setText("Message Sending Failed");
-                System.out.println("Message Sending Failed");
-            }
-        }
-        else {
-
-            String query_insert = "INSERT INTO `bookplango`.`message`\n" +
-                    "(`from_id`,\n" +
-                    "`to_id`,\n" +
-                    "`from_name`,\n" +
-                    "`to_name`,\n" +
-                    "`message`)\n" +
-                    "VALUES\n" +
-                    "(null,\n" +
-                    "'" + receiver_name.getText() + "',\n" +
-                    "'" + S_ID + "',\n" +
-                    "null,\n" +
-                    "'" + message_send_text.getText() + "')";
-            Statement statement3 = connectDB.createStatement();
-            int rowsAffected = statement3.executeUpdate(query_insert);
-            if (rowsAffected > 0) {
-                message_sent_label.setText("Message Sent");
-                System.out.println("Message Sent");
-            } else {
-                message_sent_label.setText("Message Sending Failed");
-                System.out.println("Message Sending Failed");
-            }
-        }
         connectDB.close();
     }
 }
