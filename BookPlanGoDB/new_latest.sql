@@ -129,3 +129,13 @@ CREATE TABLE `userinfo` (
   UNIQUE KEY `Username_UNIQUE` (`Username`),
   UNIQUE KEY `NID_UNIQUE` (`NID`)
 ) 
+
+
+Dhaka
+Mymensingh
+Barishal
+Khulna
+Chattogram
+Rajshahi
+Sylhet
+Rangpur

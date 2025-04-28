@@ -28,7 +28,7 @@ public class Statistics {
     private Parent root;
 
     @FXML
-    private Label total_user,total_service_provider, total_total;
+    private Label total_user, total_service_provider, total_total;
     @FXML
     private Label total_expenses;
 
@@ -42,23 +42,41 @@ public class Statistics {
         stage.show();
     }
 
+    public void switchtoMoreStatScene(ActionEvent event) throws IOException, SQLException {
+        Parent root = FXMLLoader.load(getClass().getResource("more_statistics.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
     @FXML
     private TableView<Statistics_Table> hotelstatTableView;
     @FXML
-    private TableColumn<Statistics_Table,String> hotelNameTableColumn;
+    private TableColumn<Statistics_Table, String> hotelNameTableColumn;
     @FXML
-    private TableColumn<Statistics_Table,Integer>hotelCountTableColumn;
+    private TableColumn<Statistics_Table, Integer> hotelCountTableColumn;
 
     ObservableList<Statistics_Table> statisticsTablesObservableList = FXCollections.observableArrayList();
 
     @FXML
     private TableView<Statistics_Table> carstatTableView;
     @FXML
-    private TableColumn<Statistics_Table,Integer> carIDTableColumn;
+    private TableColumn<Statistics_Table, Integer> carIDTableColumn;
     @FXML
-    private TableColumn<Statistics_Table,Integer>carCountTableColumn;
+    private TableColumn<Statistics_Table, Integer> carCountTableColumn;
 
     ObservableList<Statistics_Table> statisticsCarTablesObservableList = FXCollections.observableArrayList();
+
+    @FXML
+    private TableView<Statistics_Table> destinationstatTableView;
+    @FXML
+    private TableColumn<Statistics_Table, String> destinationNameTableColumn;
+    @FXML
+    private TableColumn<Statistics_Table, Integer> destinationCountTableColumn;
+
+    ObservableList<Statistics_Table> statisticsDestinationTablesObservableList = FXCollections.observableArrayList();
 
     public void initialize() {
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -104,9 +122,9 @@ public class Statistics {
             hotelResult.close();
 
             hotelNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            hotelCountTableColumn.setCellValueFactory (new PropertyValueFactory<>("count"));
+            hotelCountTableColumn.setCellValueFactory(new PropertyValueFactory<>("count"));
 
-            hotelstatTableView.setItems (statisticsTablesObservableList);
+            hotelstatTableView.setItems(statisticsTablesObservableList);
 
             // GET top cars // GROUP BY ORDER BY
             ResultSet carResult = statement.executeQuery("SELECT CarID, COUNT(*) AS booking_count\n" +
@@ -122,9 +140,9 @@ public class Statistics {
             carResult.close();
 
             carIDTableColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-            carCountTableColumn.setCellValueFactory (new PropertyValueFactory<>("count"));
+            carCountTableColumn.setCellValueFactory(new PropertyValueFactory<>("count"));
 
-            carstatTableView.setItems (statisticsCarTablesObservableList);
+            carstatTableView.setItems(statisticsCarTablesObservableList);
 
             // Get total expenses
             ResultSet expensesResult = statement.executeQuery("SELECT SUM(Total_Expenses) FROM bookplango.tourdetails");
@@ -133,7 +151,6 @@ public class Statistics {
                 total_expenses.setText(String.valueOf(totalExpenses) + " BDT");
             }
             expensesResult.close();
-
 
         } catch (SQLException e) {
             Logger.getLogger(Admin_Dashboard_Controller.class.getName()).log(Level.SEVERE, null, e);
