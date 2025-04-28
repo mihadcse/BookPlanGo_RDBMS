@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -86,8 +87,12 @@ public class UserSeeCarDetails {
         pID.setText(String.valueOf(cid));
         pContact.setText(pc);
         //Image image=new Image(new FileInputStream(ip+".png")); // Zarif's car image path
-        Image image = new Image(ip); // Mihad's car image path
+        // Convert filesystem path to URI
+        File imageFile = new File(ip);
+        Image image = new Image(imageFile.toURI().toString());
         imageView.setImage(image);
+        System.out.println(ip);
+        System.out.println(ip);
     }
     @FXML
     public void setBack(ActionEvent event) throws IOException, SQLException {
