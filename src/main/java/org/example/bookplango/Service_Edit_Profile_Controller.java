@@ -10,8 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.security.MessageDigest;
@@ -239,33 +241,75 @@ public class Service_Edit_Profile_Controller  {
             notification.setText("Image Added");
         }
     }*/
+//    public void add_image_path_click() throws SQLException {
+//        // Database connection similar to addPlace()
+//        DatabaseConnection connectNew = new DatabaseConnection();
+//        Connection connectDB = connectNew.getConnection();
+//
+//        // PreparedStatement for update with placeholders
+//        String update_image = "UPDATE `bookplango`.`serviceprovider_info`\n" +
+//                "SET\n" +
+//                "`service_image` = ?\n" +
+//                "WHERE `service_id` = ?";
+//
+//        PreparedStatement pstmt = connectDB.prepareStatement(update_image);
+//
+//        // Setting values using pstmt.setString()
+//        pstmt.setString(1, image_path.getText());
+//        pstmt.setString(2, S_ID);
+//
+//        // Executing the update
+//        Integer res = pstmt.executeUpdate();
+//        if (res > 0) {
+//            System.out.println("Image Added");
+//            notification.setText("Image Added");
+//        }
+//
+//        // Close the connection (recommended practice)
+//        pstmt.close();
+//        connectDB.close();
+//    }
+    @FXML
     public void add_image_path_click() throws SQLException {
-        // Database connection similar to addPlace()
-        DatabaseConnection connectNew = new DatabaseConnection();
-        Connection connectDB = connectNew.getConnection();
+        // Open FileChooser to select an image
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image");
 
-        // PreparedStatement for update with placeholders
-        String update_image = "UPDATE `bookplango`.`serviceprovider_info`\n" +
-                "SET\n" +
-                "`service_image` = ?\n" +
-                "WHERE `service_id` = ?";
+        // Set extension filters (only show image files)
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
 
-        PreparedStatement pstmt = connectDB.prepareStatement(update_image);
+        // Open dialog
+        Stage stage = (Stage) image_path.getScene().getWindow(); // Get current window
+        File selectedFile = fileChooser.showOpenDialog(stage);
 
-        // Setting values using pstmt.setString()
-        pstmt.setString(1, image_path.getText());
-        pstmt.setString(2, S_ID);
+        if (selectedFile != null) {
+            // Set the selected image path to the text field
+            image_path.setText(selectedFile.getAbsolutePath());
 
-        // Executing the update
-        Integer res = pstmt.executeUpdate();
-        if (res > 0) {
-            System.out.println("Image Added");
-            notification.setText("Image Added");
+            // Now save to database
+            DatabaseConnection connectNew = new DatabaseConnection();
+            Connection connectDB = connectNew.getConnection();
+
+            String update_image = "UPDATE `bookplango`.`serviceprovider_info` SET `service_image` = ? WHERE `service_id` = ?";
+            PreparedStatement pstmt = connectDB.prepareStatement(update_image);
+
+            pstmt.setString(1, selectedFile.getAbsolutePath()); // store path
+            pstmt.setString(2, S_ID);
+
+            int res = pstmt.executeUpdate();
+            if (res > 0) {
+                System.out.println("Image Added");
+                notification.setText("Image Added");
+            } else {
+                notification.setText("Image Not Added");
+            }
+
+            pstmt.close();
+            connectDB.close();
+        } else {
+            System.out.println("No file selected");
         }
-
-        // Close the connection (recommended practice)
-        pstmt.close();
-        connectDB.close();
     }
-
 }
