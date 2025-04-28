@@ -80,7 +80,7 @@ public class Traveler_Booking_Controller {
         traveler_Control.initialize();
     }
 
-    public void switchtouserBookingScene(ActionEvent event) throws IOException {
+    public void switchtouserBookingScene(ActionEvent event) throws IOException, SQLException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user_Booking.fxml"));
         Parent root = fxmlLoader.load();
         UserWelcomeDashboard us = fxmlLoader.getController();
@@ -112,6 +112,8 @@ public class Traveler_Booking_Controller {
     private TableColumn<Traveler_Booking,String>travelerhotelAddressTableColumn;
     @FXML
     private TableColumn<Traveler_Booking,String>travelerhotelContactTableColumn;
+    @FXML
+    private TableColumn<Traveler_Booking,String> travelerhotelRatingTableColumn;
 
     ObservableList<Traveler_Booking> traveler_bookingObservableList = FXCollections.observableArrayList();
 
@@ -119,20 +121,29 @@ public class Traveler_Booking_Controller {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String travelerTableViewquery = "Select serviceprovider_info.service_name,serviceprovider_info.service_location,serviceprovider_info.service_phone_no from serviceprovider_info where service_type = 'Hotel' and service_approval = 'Approved'";
+        String travelerTableViewquery = "select s.service_name as name,s.service_location as location,s.service_phone_no as phone,sum(h.Rating) as rating, sum(h.RatingNum) as ratingNum from h_roomdetails h inner join serviceprovider_info s on h.Hotel_ID=s.service_id where s.service_approval='Approved' group by s.service_id;";
         try{
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery (travelerTableViewquery);
             while (queryOutput.next()) {
-                String queryName = queryOutput.getString( "service_name");
-                String queryAddress = queryOutput.getString("service_location");
-                String queryContact = queryOutput.getString("service_phone_no");
-                traveler_bookingObservableList.add(new Traveler_Booking (queryName, queryAddress, queryContact));
+                String name = queryOutput.getString( "name");
+                String address = queryOutput.getString("location");
+                String contact = queryOutput.getString("phone");
+                String rating;
+                Float trn=queryOutput.getFloat("ratingNum");
+                int tr= queryOutput.getInt("rating");
+                if(trn==0){
+                    rating="N/A";
+                }else{
+                    rating=String.format("%.2f",tr/trn );
+                }
+                traveler_bookingObservableList.add(new Traveler_Booking (name, address, contact,rating));
             }
 
             travelerhotelNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
             travelerhotelAddressTableColumn.setCellValueFactory (new PropertyValueFactory<>("Address"));
             travelerhotelContactTableColumn.setCellValueFactory (new PropertyValueFactory<>("Contact"));
+            travelerhotelRatingTableColumn.setCellValueFactory (new PropertyValueFactory<>("Rating"));
 
             travelerBookingTableView.setItems (traveler_bookingObservableList);
 
@@ -167,7 +178,7 @@ public class Traveler_Booking_Controller {
         }
     }
 
-    public void initialize_car () {
+    /*public void initialize_car () {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -217,7 +228,7 @@ public class Traveler_Booking_Controller {
             Logger.getLogger (Traveler_Booking_Controller.class.getName()).log (Level. SEVERE,null, e);
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void Selection_hotel(ActionEvent event) throws IOException, SQLException {
         ObservableList<Traveler_Booking> hotel_list;
@@ -236,7 +247,7 @@ public class Traveler_Booking_Controller {
     }
 
 
-    public void Selection_car(ActionEvent event) throws IOException{
+    /*public void Selection_car(ActionEvent event) throws IOException{
 
         ObservableList<Traveler_Booking> hotel_list;
         hotel_list = travelerBookingTableView.getSelectionModel().getSelectedItems();
@@ -251,6 +262,6 @@ public class Traveler_Booking_Controller {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
 }

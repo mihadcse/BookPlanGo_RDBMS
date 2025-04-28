@@ -63,7 +63,7 @@ public class Traveler_Planning_Controller {
         stage.show();
     }
 
-    public void switchtouserBookingScene(ActionEvent event) throws IOException {
+    public void switchtouserBookingScene(ActionEvent event) throws IOException, SQLException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user_Booking.fxml"));
         Parent root = fxmlLoader.load();
         UserWelcomeDashboard u_name = fxmlLoader.getController();

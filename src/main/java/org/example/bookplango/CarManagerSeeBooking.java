@@ -128,4 +128,18 @@ public class CarManagerSeeBooking {
         carWelcomeController.setData(S_ID);
         stage.show();
     }
+    @FXML
+    public void switchtoCarmessageScene(ActionEvent event) throws IOException, SQLException {
+        //Parent root = FXMLLoader.load(getClass().getResource("user_dashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("car_message.fxml"));
+        Parent root = fxmlLoader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        Car_Message_Controller car_name = fxmlLoader.getController();
+        car_name.setWelcome(S_ID);
+        car_name.initialize();
+
+    }
 }

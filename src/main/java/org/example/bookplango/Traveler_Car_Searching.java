@@ -43,6 +43,8 @@ public class Traveler_Car_Searching {
     private TableColumn<String,CarSearch> SeatNum;
     @FXML
     private TableColumn<String,CarSearch> VehicleType;
+    @FXML
+    private TableColumn<String,CarSearch> VehicleRating;
     private Stage stage;
     private Scene scene;
     String S_ID,from,to,carL,bookingDate;
@@ -112,9 +114,15 @@ public class Traveler_Car_Searching {
         carSearch=new CarSearch[total];
         buttons=new Button[total];
         int i=0;
+        String r="";
         while(resultSet.next()){
             carLicsence[i]=resultSet.getString("LiscenceNum");
-            carSearch[i]=new CarSearch(resultSet.getString("VehicleType"),resultSet.getString("Seat"),resultSet.getInt("price"));
+            if(resultSet.getInt("RatingNum")==0){
+                r="N/A";
+            }else{
+                r=String.format("%.2f",(resultSet.getFloat("Rating")/resultSet.getInt("RatingNum")));
+            }
+            carSearch[i]=new CarSearch(resultSet.getString("VehicleType"),resultSet.getString("Seat"),resultSet.getInt("price"),r);
             carSearches.add(carSearch[i]);
             i++;
         }
@@ -126,6 +134,7 @@ public class Traveler_Car_Searching {
         SeatNum.setCellValueFactory(new PropertyValueFactory<>("SNum"));
         Price.setCellValueFactory (new PropertyValueFactory<>("Price"));
         Select.setCellValueFactory (new PropertyValueFactory<>("Select"));
+        VehicleRating.setCellValueFactory(new PropertyValueFactory<>("Rating"));
         carSearchTable.setItems (carSearches);
     }
     @FXML
@@ -153,7 +162,7 @@ public class Traveler_Car_Searching {
         setTable();
     }
     @FXML
-    public void setBack(ActionEvent event) throws IOException {
+    public void setBack(ActionEvent event) throws IOException, SQLException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user_Booking.fxml"));
         Parent root = fxmlLoader.load();
         //setWelcome(s);

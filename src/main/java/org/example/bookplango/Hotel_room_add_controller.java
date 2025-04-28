@@ -25,7 +25,7 @@ public class Hotel_room_add_controller {
     private Scene scene;
     @FXML
     public Label Welcome;
-    String S_ID;
+    String S_ID,hotelName;
 
     @FXML
     public void switchtoserviceSigninScene(ActionEvent event) throws IOException {
@@ -76,6 +76,11 @@ public class Hotel_room_add_controller {
         SelectBedding.setItems(FXCollections.observableArrayList("Single","Double","triple"));
         SelectACType.setItems(FXCollections.observableArrayList("AC","Non AC"));
         try{
+            Statement statement0=connection.createStatement();
+            ResultSet resultSet0=statement0.executeQuery("select service_name from serviceprovider_info where service_id="+s+";");
+            while (resultSet0.next()){
+                hotelName=resultSet0.getString("service_name");
+            }
             int x = 0;
             Statement statement=connection.createStatement();
             ResultSet resultSet=statement.executeQuery("select Floor from serviceprovider_info where service_id="+s+"");
@@ -102,7 +107,7 @@ public class Hotel_room_add_controller {
             Connection connection= databaseConnection.getConnection();
             try {
                 Statement statement=connection.createStatement();
-                statement.executeUpdate("INSERT INTO h_roomdetails (Hotel_ID, room_num, bedding, room_status, room_ac, room_floor, room_price) VALUES ("+Integer.parseInt(S_ID)+",'"+rn+"', '"+bedding+"','Available' , '"+ac+"', "+Integer.parseInt(floor)+","+Integer.parseInt(price)+" );");
+                statement.executeUpdate("INSERT INTO h_roomdetails (Hotel_ID, Hotel_name, room_num, bedding, room_status, room_ac, room_floor, room_price,Rating,RatingNum) VALUES ("+Integer.parseInt(S_ID)+",'"+hotelName+"','"+rn+"', '"+bedding+"','Available' , '"+ac+"', "+Integer.parseInt(floor)+","+Integer.parseInt(price)+",0,0);");
                 SelectBedding.setItems(null);
                 SelectACType.setItems(null);
                 SelectFloor.setItems(null);

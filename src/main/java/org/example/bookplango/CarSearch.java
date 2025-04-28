@@ -4,13 +4,15 @@ import javafx.scene.control.Button;
 
 public class CarSearch {
     Integer price;
-    String vehicle_type,seat;
+    String vehicle_type,seat,rating;
     private Button select;
 
-    public CarSearch(String vehicle_type, String seat,Integer price) {
+
+    public CarSearch(String vehicle_type, String seat,Integer price,String rating) {
         this.vehicle_type=vehicle_type;
         this.price = price;
         this.seat = seat;
+        this.rating=rating;
         this.select=new Button("SELECT");
     }
     public String getVType() {
@@ -35,6 +37,13 @@ public class CarSearch {
 
     public void setSNum(String seat) {
         this.seat = seat;
+    }
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating= rating;
     }
 
     public Button getSelect() {

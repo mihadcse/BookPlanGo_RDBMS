@@ -31,9 +31,10 @@
       <TableView fx:id="travelerHotelDetailsTableView" layoutX="14.0" layoutY="225.0" prefHeight="224.0" prefWidth="435.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #80ccff; -fx-border-width: 2px;">
          <columns>
             <TableColumn fx:id="travelerRoomNumberTableColumn" editable="false" prefWidth="121.0" text="Room Number" />
-            <TableColumn fx:id="travelerBeddingTableColumn" editable="false" prefWidth="134.0" text="Bedding" />
-            <TableColumn fx:id="travelerACTableColumn" prefWidth="60.0" text="AC" />
-            <TableColumn fx:id="travelerPriceTableColumn" prefWidth="115.0" text="Price" />
+            <TableColumn fx:id="travelerBeddingTableColumn" editable="false" prefWidth="84.66665649414062" text="Bedding" />
+            <TableColumn fx:id="travelerACTableColumn" prefWidth="63.33332824707031" text="AC" />
+            <TableColumn fx:id="travelerPriceTableColumn" prefWidth="90.0" text="Price" />
+            <TableColumn fx:id="travelerRatingTableColumn" prefWidth="70.66668701171875" text="Rating" />
          </columns>
       </TableView>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="512.0" layoutY="444.0" mnemonicParsing="false" onAction="#Book_room_click" prefHeight="36.0" prefWidth="144.0" text="Book" textFill="#3498db">

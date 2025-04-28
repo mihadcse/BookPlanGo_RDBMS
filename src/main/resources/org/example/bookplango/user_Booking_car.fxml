@@ -52,10 +52,11 @@
             <ComboBox fx:id="To" layoutX="293.0" layoutY="165.0" prefHeight="25.0" prefWidth="134.0" style="-fx-border-color: #00bfff;" />
             <TableView fx:id="carSearchTable" layoutX="62.0" layoutY="199.0" prefHeight="255.0" prefWidth="623.0" style="-fx-border-color: #00bfff;">
                <columns>
-                  <TableColumn fx:id="VehicleType" prefWidth="204.0" text="Vehicle Type" />
-                  <TableColumn fx:id="SeatNum" prefWidth="158.0" text="Seat Number" />
-                  <TableColumn fx:id="Price" prefWidth="136.0" text="Price" />
-                  <TableColumn fx:id="Select" prefWidth="127.0" />
+                  <TableColumn fx:id="VehicleType" prefWidth="146.00002670288086" text="Vehicle Type" />
+                  <TableColumn fx:id="SeatNum" prefWidth="166.6666717529297" text="Seat Number" />
+                  <TableColumn fx:id="Price" prefWidth="116.0" text="Price" />
+                  <TableColumn fx:id="VehicleRating" prefWidth="99.33328247070312" text="Rating" />
+                  <TableColumn fx:id="Select" prefWidth="111.33331298828125" text="Select" />
                </columns>
             </TableView>
             <Label fx:id="carLabel" alignment="CENTER_RIGHT" layoutX="133.0" layoutY="464.0" prefHeight="28.0" prefWidth="246.0" textFill="#3498db">

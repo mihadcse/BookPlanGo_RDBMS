@@ -36,9 +36,10 @@
             </ImageView>
             <TableView fx:id="travelerBookingTableView" layoutX="7.0" layoutY="172.0" prefHeight="284.0" prefWidth="509.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #00bfff; -fx-border-width: 2px;">
                <columns>
-                  <TableColumn fx:id="travelerhotelNameTableColumn" editable="false" prefWidth="149.0" text="Name" />
-                  <TableColumn fx:id="travelerhotelAddressTableColumn" editable="false" prefWidth="191.0" text="Address" />
-                  <TableColumn fx:id="travelerhotelContactTableColumn" editable="false" prefWidth="166.0" text="Contact" />
+                  <TableColumn fx:id="travelerhotelNameTableColumn" editable="false" prefWidth="107.99995422363281" text="Name" />
+                  <TableColumn fx:id="travelerhotelAddressTableColumn" editable="false" prefWidth="119.33331298828125" text="Address" />
+                  <TableColumn fx:id="travelerhotelContactTableColumn" editable="false" prefWidth="129.33328247070312" text="Contact" />
+                  <TableColumn fx:id="travelerhotelRatingTableColumn" editable="false" prefWidth="129.33328247070312" text="Rating" />
                </columns>
             </TableView>
             <Label alignment="CENTER" layoutX="64.0" layoutY="135.0" prefHeight="30.0" prefWidth="99.0" text="Search" textFill="#3498db">

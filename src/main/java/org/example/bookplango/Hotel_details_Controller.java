@@ -96,6 +96,9 @@ public class Hotel_details_Controller {
     @FXML
     private TableColumn<Hotel_details,Integer>travelerPriceTableColumn;
 
+    @FXML
+    private TableColumn<Hotel_details,String>travelerRatingTableColumn;
+
     ObservableList<Hotel_details> traveler_hotelDetailsObservableList = FXCollections.observableArrayList();
 
     public void initialize(String name,String address) {
@@ -112,8 +115,13 @@ public class Hotel_details_Controller {
                 "SET room_status = 'Available',customer_id = null,book_start_date = null, book_end_date = null\n" +
                 "WHERE book_end_date IS NULL OR book_end_date < CURDATE()";
 
-        String Viewquery = "Select h_roomdetails.room_num,h_roomdetails.bedding,h_roomdetails.room_ac,h_roomdetails.room_price from h_roomdetails,serviceprovider_info\n" +
-                "where serviceprovider_info.service_id = h_roomdetails.Hotel_ID and serviceprovider_info.service_name = '"+H_name+"'and room_status = 'Available'";
+        String Viewquery = "SELECT h_roomdetails.room_num, h_roomdetails.bedding, h_roomdetails.room_ac, " +
+                "h_roomdetails.room_price, h_roomdetails.Rating AS Rating, h_roomdetails.RatingNum AS RatingNum " +
+                "FROM h_roomdetails " +
+                "JOIN serviceprovider_info ON serviceprovider_info.service_id = h_roomdetails.Hotel_ID " +
+                "WHERE serviceprovider_info.service_name = '" + H_name + "' " +
+                "AND room_status = 'Available'";
+
         String view = "Select * from serviceprovider_info, h_roomdetails where serviceprovider_info.service_id = h_roomdetails.Hotel_ID and serviceprovider_info.service_name = '"+H_name+"'";
         try{
             Statement statement2 = connectDB.createStatement();
@@ -150,13 +158,23 @@ public class Hotel_details_Controller {
                 String querybedding = queryOutput.getString("bedding");
                 String queryac = queryOutput.getString("room_ac");
                 Integer queryprice = queryOutput.getInt("room_price");
-                traveler_hotelDetailsObservableList.add(new Hotel_details(queryroomnum, queryprice, querybedding,queryac));
+                String rating;
+                Float trn=queryOutput.getFloat("RatingNum");
+                int tr= queryOutput.getInt("Rating");
+                if(trn==0){
+                    rating="N/A";
+                }else{
+                    rating=String.format("%.2f",tr/trn );
+                }
+
+                traveler_hotelDetailsObservableList.add(new Hotel_details(queryroomnum, queryprice, querybedding,queryac,rating));
             }
 
             travelerRoomNumberTableColumn.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
             travelerBeddingTableColumn.setCellValueFactory(new PropertyValueFactory<>("Bedding"));
             travelerACTableColumn.setCellValueFactory(new PropertyValueFactory<>("ac"));
             travelerPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+            travelerRatingTableColumn.setCellValueFactory(new PropertyValueFactory<>("Rating"));
 
             travelerHotelDetailsTableView.setItems(traveler_hotelDetailsObservableList);
         }
@@ -199,6 +217,7 @@ public class Hotel_details_Controller {
             ResultSet res = statement2.executeQuery(query_name);
             if(res.next())
             {
+
                 nid = res.getInt("NID");
                 NewQuery = "UPDATE bookplango.h_roomdetails\n" +
                         "SET customer_id = '"+nid+"',\n" +
@@ -221,9 +240,9 @@ public class Hotel_details_Controller {
                 booking_label.setText("Booking complete");
                 expence.setText(Long.toString(total_expense));
                 String insert_details = "INSERT INTO `bookplango`.`tourdetails`\n" +
-                        "(`traveler_nid`,`hotel_name`,`StartDate`,`EndDate`,`Destination`,`Total_Expenses`)\n" +
+                        "(`traveler_nid`,`hotel_name`,`room_name`,`StartDate`,`EndDate`,`Destination`,`Total_Expenses`)\n" +
                         "VALUES\n" +
-                        "("+nid+", '"+hotel_Name.getText()+"', '"+startDate+"', '"+endDate+"', '"+hotel_location.getText()+"', "+total_expense+")";
+                        "("+nid+", '"+hotel_Name.getText()+"', '"+room_list.get(0).getRoom_number()+"', '"+startDate+"', '"+endDate+"', '"+hotel_location.getText()+"', "+total_expense+")";
                 int insertResult = statement2.executeUpdate(insert_details);
                 if (insertResult > 0) {
                     System.out.println("Insert done in tour details");

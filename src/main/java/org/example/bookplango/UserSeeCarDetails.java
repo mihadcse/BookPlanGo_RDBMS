@@ -102,7 +102,7 @@ public class UserSeeCarDetails {
         travelerCarSearching.setSearch2(S_ID,from,to,bookingDate);
         stage.show();
     }@FXML
-    public void setBook(ActionEvent event) throws SQLException, IOException {
+    public void setBook(ActionEvent event) throws SQLException, IOException, InterruptedException {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         Statement statement0=connectDB.createStatement();

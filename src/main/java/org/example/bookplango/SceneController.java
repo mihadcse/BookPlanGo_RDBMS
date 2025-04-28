@@ -802,7 +802,8 @@ public class SceneController {
 
 
 
-    public void useronloginButtonclick(ActionEvent event) throws IOException {
+    public void useronloginButtonclick(ActionEvent event) throws IOException, SQLException {
+    public void useronloginButtonclick(ActionEvent event) throws IOException, SQLException, InterruptedException {
         if (username_Text.getText().isBlank() == false && password_text.getText().isBlank() == false) {
             uservalidateLogin();
             if(switch_to_welcome == 1) {
@@ -810,12 +811,14 @@ public class SceneController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcomeuser.fxml"));
                 Parent root1 = fxmlLoader.load();
                 UserWelcomeDashboard user_name_dashboard = fxmlLoader.getController();
+
                 user_name_dashboard.setWelcome(username_Text.getText());
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root1);
                 stage.setScene(scene);
                 stage.setResizable(false);
                 stage.show();
+                user_name_dashboard.setWelcome(username_Text.getText());
             }
         } else {
             userlogin_label.setText("Enter username/password");
