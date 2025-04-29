@@ -154,3 +154,36 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+Select * from BookPlanGo.h_roomdetails
+
+-- -- -- -- -- --
+
+DELIMITER //
+
+CREATE TRIGGER car_booking_cancel
+AFTER DELETE ON carbookdetails
+FOR EACH ROW
+BEGIN
+    DECLARE booking_count INT;
+
+    -- Count future or same-day bookings for this car
+    SELECT COUNT(*)
+    INTO booking_count
+    FROM carbookdetails
+    WHERE CarLicsence = OLD.CarLicsence
+      AND BookingDate >= OLD.BookingDate;
+
+    -- Only set carStatus = 'available' if no other bookings remain on or after that day
+    IF booking_count = 0 THEN
+        UPDATE car_details
+        SET carStatus = 'available'
+        WHERE LiscenceNum = OLD.CarLicsence;
+    END IF;
+END;
+//
+
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS car_booking_cancel;

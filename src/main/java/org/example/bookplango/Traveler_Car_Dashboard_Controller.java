@@ -166,11 +166,12 @@ public class Traveler_Car_Dashboard_Controller {
             int affectedRows = preparedStatement.executeUpdate();
 
             if (affectedRows > 0) {
-                traveler_cardashboardObservableList.remove(selectedBooking);
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Booking cancelled successfully.");
+                initialize(); // <-- Reloads data from the database
             } else {
                 showAlert(Alert.AlertType.ERROR, "Failed", "Failed to cancel booking.");
             }
+
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "Database Error", e.getMessage());
             Logger.getLogger(Traveler_Car_Dashboard.class.getName()).log(Level.SEVERE, null, e);
