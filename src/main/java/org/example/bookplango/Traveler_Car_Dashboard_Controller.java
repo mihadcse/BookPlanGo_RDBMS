@@ -123,16 +123,16 @@ public class Traveler_Car_Dashboard_Controller {
             ResultSet queryOutput = statement.executeQuery(travelerTableViewquery);
 
             while (queryOutput.next()) {
-                Integer queryID = queryOutput.getInt("CarID");
+                Integer queryTravelID = queryOutput.getInt("travelID");
                 Date queryDate = queryOutput.getDate("BookingDate");
                 String queryStart = queryOutput.getString("Start");
                 String queryEnd = queryOutput.getString("End");
                 String queryLisence = queryOutput.getString("CarLicsence");
 
-                traveler_cardashboardObservableList.add(new Traveler_Car_Dashboard(queryID, queryLisence, queryStart, queryEnd, queryDate));
+                traveler_cardashboardObservableList.add(new Traveler_Car_Dashboard(queryTravelID, queryLisence, queryStart, queryEnd, queryDate));
             }
 
-            travelerCarIDTableColumn.setCellValueFactory(new PropertyValueFactory<>("carid"));
+            travelerCarIDTableColumn.setCellValueFactory(new PropertyValueFactory<>("travelID"));
             travelerCarLisenceTableColumn.setCellValueFactory(new PropertyValueFactory<>("car_lisence"));
             travelerCarstartTableColumn.setCellValueFactory(new PropertyValueFactory<>("start_d"));
             travelerCarendTableColumn.setCellValueFactory(new PropertyValueFactory<>("end_d"));
@@ -153,28 +153,29 @@ public class Traveler_Car_Dashboard_Controller {
             return;
         }
 
+        if (deleteBookingFromDatabase(selectedBooking)) {
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Booking cancelled successfully.");
+            initialize(); // Reloads data from the database
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Failed", "Failed to cancel booking.");
+        }
+    }
+
+    private boolean deleteBookingFromDatabase(Traveler_Car_Dashboard selectedBooking) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        try {
-            String deleteQuery = "DELETE FROM carbookdetails WHERE CarID = ? AND CarLicsence = ? AND Username = ?";
-            PreparedStatement preparedStatement = connectDB.prepareStatement(deleteQuery);
-            preparedStatement.setInt(1, selectedBooking.getCarid());
-            preparedStatement.setString(2, selectedBooking.getCar_lisence());
-            preparedStatement.setString(3, s);
+        String deleteQuery = "DELETE FROM carbookdetails WHERE travelID = ? AND Username = ?";
+        try (PreparedStatement preparedStatement = connectDB.prepareStatement(deleteQuery)) {
+            preparedStatement.setInt(1, selectedBooking.getTravelID()); // Use travelID for deletion
+            preparedStatement.setString(2, s); // User's username
 
             int affectedRows = preparedStatement.executeUpdate();
-
-            if (affectedRows > 0) {
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Booking cancelled successfully.");
-                initialize(); // <-- Reloads data from the database
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Failed", "Failed to cancel booking.");
-            }
-
+            return affectedRows > 0;
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "Database Error", e.getMessage());
             Logger.getLogger(Traveler_Car_Dashboard.class.getName()).log(Level.SEVERE, null, e);
+            return false;
         }
     }
 
