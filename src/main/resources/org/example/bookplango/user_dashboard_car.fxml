@@ -33,7 +33,7 @@
                   <Image url="@Bangladesh.jpg" />
                </image>
             </ImageView>
-            <TableView fx:id="travelerCarDashboardTableView" layoutX="7.0" layoutY="164.0" prefHeight="339.0" prefWidth="509.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #00bfff; -fx-border-width: 2px;">
+            <TableView fx:id="travelerCarDashboardTableView" layoutX="7.0" layoutY="164.0" prefHeight="302.0" prefWidth="509.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #00bfff; -fx-border-width: 2px;">
                <columns>
                   <TableColumn fx:id="travelerCarIDTableColumn" editable="false" prefWidth="86.0" text="Service Id" />
                   <TableColumn fx:id="travelerCarLisenceTableColumn" editable="false" prefWidth="105.0" text="Car License" />
@@ -42,6 +42,11 @@
                   <TableColumn fx:id="travelerCarendTableColumn" editable="false" prefWidth="110.0" text="End" />
                </columns>
             </TableView>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="199.0" layoutY="132.0" mnemonicParsing="false" onAction="#switchtouserDashboardScene" prefHeight="28.0" prefWidth="122.0" text="Hotel details" textFill="#3498db">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-18.0" layoutY="179.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="200.0" text="Dashboard" textFill="#3498db">
@@ -72,6 +77,11 @@
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-45.0" layoutY="403.0" mnemonicParsing="false" onAction="#switchtouserMessageScene" prefHeight="13.0" prefWidth="200.0" text="Messages" textFill="#3498db">
          <font>
             <Font name="Calibri Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelBookingButton" layoutX="395.0" layoutY="471.0" mnemonicParsing="false" onAction="#cancelCarBooking" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #e74c3c;" text="Cancel Booking" textFill="#ffffff">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
          </font>
       </Button>
    </children>

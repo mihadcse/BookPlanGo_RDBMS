@@ -8,17 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +24,6 @@ public class Traveler_Car_Dashboard_Controller {
     UserWelcomeDashboard user_dash;
 
     Integer nid;
-
     String s = "";
 
     @FXML
@@ -38,20 +32,23 @@ public class Traveler_Car_Dashboard_Controller {
     @FXML
     private TableView<Traveler_Car_Dashboard> travelerCarDashboardTableView;
     @FXML
-    private TableColumn<Traveler_Car_Dashboard,String> travelerCarLisenceTableColumn;
+    private TableColumn<Traveler_Car_Dashboard, String> travelerCarLisenceTableColumn;
     @FXML
-    private TableColumn<Traveler_Car_Dashboard,String>travelerCarstartTableColumn;
+    private TableColumn<Traveler_Car_Dashboard, String> travelerCarstartTableColumn;
     @FXML
-    private TableColumn<Traveler_Car_Dashboard,String>travelerCarendTableColumn;
+    private TableColumn<Traveler_Car_Dashboard, String> travelerCarendTableColumn;
     @FXML
-    private TableColumn<Traveler_Car_Dashboard, Date>travelerCarDateTableColumn;
+    private TableColumn<Traveler_Car_Dashboard, Date> travelerCarDateTableColumn;
     @FXML
-    private TableColumn<Traveler_Car_Dashboard,Integer>travelerCarIDTableColumn;
+    private TableColumn<Traveler_Car_Dashboard, Integer> travelerCarIDTableColumn;
 
-    public void setWelcome(String name)
-    {
+    @FXML
+    private Button cancelBookingButton;
+
+    ObservableList<Traveler_Car_Dashboard> traveler_cardashboardObservableList = FXCollections.observableArrayList();
+
+    public void setWelcome(String name) {
         username_label_dashboard.setText(name);
-        System.out.println(name);
         s = name;
     }
 
@@ -102,47 +99,90 @@ public class Traveler_Car_Dashboard_Controller {
         stage.show();
     }
 
-    ObservableList<Traveler_Car_Dashboard> traveler_cardashboardObservableList = FXCollections.observableArrayList();
+    public void switchtouserDashboardScene(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user_dashboard.fxml"));
+        Parent root = fxmlLoader.load();
+        Traveler_Dashboard_Controller us = fxmlLoader.getController();
+        us.setWelcome(s);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        us.initialize();
+    }
 
-    public void initialize () {
+    public void initialize() {
+        traveler_cardashboardObservableList.clear();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        //String query_name = "Select NID from sys.userinfo where Username = '"+username_label_dashboard.getText()+"'";
-
-        try{
-            /*Statement statement = connectDB.createStatement();
-            ResultSet res = statement.executeQuery(query_name);
-            if(res.next()) {
-                nid = res.getInt("NID");
-            }*/
+        try {
             Statement statement = connectDB.createStatement();
-            String travelerTableViewquery = "Select * from carbookdetails where Username = '"+username_label_dashboard.getText()+"'";
-
-            ResultSet queryOutput = statement.executeQuery (travelerTableViewquery);
+            String travelerTableViewquery = "SELECT * FROM carbookdetails WHERE Username = '" + s + "'";
+            ResultSet queryOutput = statement.executeQuery(travelerTableViewquery);
 
             while (queryOutput.next()) {
                 Integer queryID = queryOutput.getInt("CarID");
                 Date queryDate = queryOutput.getDate("BookingDate");
                 String queryStart = queryOutput.getString("Start");
                 String queryEnd = queryOutput.getString("End");
-                String  queryLisence = queryOutput.getString("CarLicsence");
+                String queryLisence = queryOutput.getString("CarLicsence");
 
-                traveler_cardashboardObservableList.add(new Traveler_Car_Dashboard(queryID,queryLisence,queryStart,queryEnd,queryDate));
+                traveler_cardashboardObservableList.add(new Traveler_Car_Dashboard(queryID, queryLisence, queryStart, queryEnd, queryDate));
             }
 
             travelerCarIDTableColumn.setCellValueFactory(new PropertyValueFactory<>("carid"));
-            travelerCarLisenceTableColumn.setCellValueFactory (new PropertyValueFactory<>("car_lisence"));
-            travelerCarstartTableColumn.setCellValueFactory (new PropertyValueFactory<>("start_d"));
-            travelerCarendTableColumn.setCellValueFactory (new PropertyValueFactory<>("end_d"));
+            travelerCarLisenceTableColumn.setCellValueFactory(new PropertyValueFactory<>("car_lisence"));
+            travelerCarstartTableColumn.setCellValueFactory(new PropertyValueFactory<>("start_d"));
+            travelerCarendTableColumn.setCellValueFactory(new PropertyValueFactory<>("end_d"));
             travelerCarDateTableColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-            travelerCarDashboardTableView.setItems (traveler_cardashboardObservableList);
+            travelerCarDashboardTableView.setItems(traveler_cardashboardObservableList);
 
+        } catch (SQLException e) {
+            Logger.getLogger(Traveler_Car_Dashboard.class.getName()).log(Level.SEVERE, null, e);
         }
-        catch(SQLException e) {
-            Logger.getLogger (Traveler_Car_Dashboard.class.getName()).log (Level. SEVERE,null, e);
-            e.printStackTrace();
+    }
+
+    @FXML
+    public void cancelCarBooking(ActionEvent event) {
+        Traveler_Car_Dashboard selectedBooking = travelerCarDashboardTableView.getSelectionModel().getSelectedItem();
+        if (selectedBooking == null) {
+            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a booking to cancel.");
+            return;
         }
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        try {
+            String deleteQuery = "DELETE FROM carbookdetails WHERE CarID = ? AND CarLicsence = ? AND Username = ?";
+            PreparedStatement preparedStatement = connectDB.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1, selectedBooking.getCarid());
+            preparedStatement.setString(2, selectedBooking.getCar_lisence());
+            preparedStatement.setString(3, s);
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Booking cancelled successfully.");
+                initialize(); // <-- Reloads data from the database
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Failed", "Failed to cancel booking.");
+            }
+
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Database Error", e.getMessage());
+            Logger.getLogger(Traveler_Car_Dashboard.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }
