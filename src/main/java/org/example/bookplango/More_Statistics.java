@@ -40,6 +40,8 @@ public class More_Statistics {
     private RadioButton star1;
     @FXML
     private Label rating_success_label;
+    @FXML
+    private Label average_rating_label;
 
     public void switchtoUserScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("selectuser.fxml"));
@@ -93,6 +95,17 @@ public class More_Statistics {
 
             // Set items into TableView
             destinationstatTableView.setItems(statisticsDestinationTablesObservableList);
+
+            // Fetch and display average rating
+            ResultSet avgRatingResult = statement.executeQuery("SELECT ROUND(AVG(rating_value), 2) AS avg_rating FROM bookplango.ratings");
+
+            if (avgRatingResult.next()) {
+                double avgRating = avgRatingResult.getDouble("avg_rating");
+                average_rating_label.setText( avgRating + " ★");
+            } else {
+                average_rating_label.setText("No ratings yet.");
+            }
+            avgRatingResult.close();
 
         } catch (SQLException e) {
             Logger.getLogger(More_Statistics.class.getName()).log(Level.SEVERE, null, e);
