@@ -131,11 +131,29 @@ CREATE TABLE `userinfo` (
 ) 
 
 
-Dhaka
-Mymensingh
-Barishal
-Khulna
-Chattogram
-Rajshahi
-Sylhet
-Rangpur
+CREATE TABLE bookplango.ratings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    rating_value INT NOT NULL CHECK (rating_value BETWEEN 1 AND 5),
+    rating_time DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE bookplango.rating_logs (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    rating_id INT,
+    rating_value INT,
+    log_time DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+USE bookplango;
+DELIMITER $$
+
+CREATE TRIGGER after_rating_insert
+AFTER INSERT ON bookplango.ratings
+FOR EACH ROW
+BEGIN
+    INSERT INTO bookplango.rating_logs (rating_id, rating_value)
+    VALUES (NEW.id, NEW.rating_value);
+END$$
+
+DELIMITER ;
