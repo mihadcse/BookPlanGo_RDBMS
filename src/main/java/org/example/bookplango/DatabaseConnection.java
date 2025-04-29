@@ -6,9 +6,9 @@ import java.sql.DriverManager;
 public class DatabaseConnection {
     public Connection databaseLink;
     public Connection getConnection() {
-        String databaseName = "bookplango";
+        String databaseName = "BookPlanGo";
         String databaseUser = "root";
-        String databasePassword = "rdbms@1234";
+        String databasePassword = "mYsql_22dbP$";
         String url = "jdbc:mysql://localhost/" + databaseName;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

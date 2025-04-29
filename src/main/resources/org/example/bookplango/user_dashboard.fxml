@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="404.0" prefWidth="475.0" style="-fx-background-color: #ABD6F1; -fx-border-width: 2px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.Traveler_Dashboard_Controller">
+<AnchorPane prefHeight="500.0" prefWidth="705.0" style="-fx-background-color: #ABD6F1; -fx-border-width: 2px;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookplango.Traveler_Dashboard_Controller">
    <children>
       <AnchorPane layoutX="185.0" prefHeight="511.0" prefWidth="517.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #29654f; -fx-border-width: 2px;">
          <children>
@@ -33,7 +33,7 @@
                   <Image url="@Bangladesh.jpg" />
                </image>
             </ImageView>
-            <TableView fx:id="travelerDashboardTableView" layoutX="7.0" layoutY="164.0" prefHeight="339.0" prefWidth="509.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #00bfff; -fx-border-width: 2px;">
+            <TableView fx:id="travelerDashboardTableView" layoutX="7.0" layoutY="164.0" prefHeight="301.0" prefWidth="509.0" style="-fx-background-color: #EBF5FB; -fx-border-color: #00bfff; -fx-border-width: 2px;">
                <columns>
                   <TableColumn fx:id="travelerHotelTableColumn" editable="false" prefWidth="92.0" text="Hotel Name" />
                   <TableColumn fx:id="travelerDestinationTableColumn" editable="false" prefWidth="105.0" text="Destination" />
@@ -49,6 +49,12 @@
             </Button>
          </children>
       </AnchorPane>
+      
+      <Button fx:id="cancelBookingButton" layoutX="385.0" layoutY="470.0" mnemonicParsing="false" onAction="#cancelHotelBooking" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #e74c3c;" text="Cancel Booking" textFill="#ffffff">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </Button>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="-18.0" layoutY="179.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="200.0" text="Dashboard" textFill="#3498db">
          <font>
             <Font name="Calibri Bold" size="25.0" />
@@ -79,5 +85,6 @@
             <Font name="Calibri Bold" size="25.0" />
          </font>
       </Button>
+
    </children>
 </AnchorPane>

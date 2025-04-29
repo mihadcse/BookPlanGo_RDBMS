@@ -26,14 +26,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class Traveler_Dashboard_Controller {
     private Stage stage;
     private Scene scene;
     UserWelcomeDashboard user_dash;
-
     Integer nid;
-
     String s = "";
 
     @FXML
@@ -42,18 +39,19 @@ public class Traveler_Dashboard_Controller {
     @FXML
     private TableView<Traveler_Dashboard> travelerDashboardTableView;
     @FXML
-    private TableColumn<Traveler_Dashboard,String> travelerHotelTableColumn;
+    private TableColumn<Traveler_Dashboard, String> travelerHotelTableColumn;
     @FXML
-    private TableColumn<Traveler_Dashboard,String>travelerDestinationTableColumn;
+    private TableColumn<Traveler_Dashboard, String> travelerDestinationTableColumn;
     @FXML
-    private TableColumn<Traveler_Dashboard,Integer>travelerExpensesTableColumn;
+    private TableColumn<Traveler_Dashboard, Integer> travelerExpensesTableColumn;
     @FXML
-    private TableColumn<Traveler_Dashboard,Date>travelerStartTableColumn;
+    private TableColumn<Traveler_Dashboard, Date> travelerStartTableColumn;
     @FXML
-    private TableColumn<Traveler_Dashboard,Date>travelerEndTableColumn;
+    private TableColumn<Traveler_Dashboard, Date> travelerEndTableColumn;
 
-    public void setWelcome(String name)
-    {
+    ObservableList<Traveler_Dashboard> traveler_dashboardObservableList = FXCollections.observableArrayList();
+
+    public void setWelcome(String name) {
         username_label_dashboard.setText(name);
         System.out.println(name);
         s = name;
@@ -119,53 +117,95 @@ public class Traveler_Dashboard_Controller {
         us.initialize();
     }
 
-    ObservableList<Traveler_Dashboard> traveler_dashboardObservableList = FXCollections.observableArrayList();
+    public void initialize() {
+        traveler_dashboardObservableList.clear(); // ensure it's cleared before reloading
 
-    public void initialize () {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String query_name = "Select NID from bookplango.userinfo where Username = '"+username_label_dashboard.getText()+"'";
+        String query_name = "SELECT NID FROM bookplango.userinfo WHERE Username = '" + username_label_dashboard.getText() + "'";
 
-        try{
+        try {
             Statement statement = connectDB.createStatement();
             ResultSet res = statement.executeQuery(query_name);
-            if(res.next()) {
+            if (res.next()) {
                 nid = res.getInt("NID");
             }
-                String travelerTableViewquery = "SELECT `tourdetails`.`traveler_nid`,\n" +
-                        "    `tourdetails`.`hotel_name`,\n" +
-                        "    `tourdetails`.`StartDate`,\n" +
-                        "    `tourdetails`.`EndDate`,\n" +
-                        "    `tourdetails`.`Destination`,\n" +
-                        "    `tourdetails`.`Total_Expenses`\n" +
-                        "FROM `bookplango`.`tourdetails` where tourdetails.traveler_nid = '"+nid+"'";
 
-                ResultSet queryOutput = statement.executeQuery (travelerTableViewquery);
+            String travelerTableViewquery = "SELECT `tourdetails`.`traveler_nid`, " +
+                    "`tourdetails`.`hotel_name`, " +
+                    "`tourdetails`.`StartDate`, " +
+                    "`tourdetails`.`EndDate`, " +
+                    "`tourdetails`.`Destination`, " +
+                    "`tourdetails`.`Total_Expenses` " +
+                    "FROM `bookplango`.`tourdetails` WHERE `tourdetails`.`traveler_nid` = '" + nid + "'";
 
-                while (queryOutput.next()) {
-                    String queryDestination = queryOutput.getString("Destination");
-                    Date queryStartdate = queryOutput.getDate("StartDate");
-                    Date queryEnddate = queryOutput.getDate("EndDate");
-                    Integer queryExpenses = queryOutput.getInt("Total_Expenses");
-                    String queryhotelname = queryOutput.getString("hotel_name");
-                    traveler_dashboardObservableList.add(new Traveler_Dashboard(queryExpenses, queryDestination, queryhotelname, queryStartdate, queryEnddate));
-                }
+            ResultSet queryOutput = statement.executeQuery(travelerTableViewquery);
 
+            while (queryOutput.next()) {
+                String queryDestination = queryOutput.getString("Destination");
+                Date queryStartdate = queryOutput.getDate("StartDate");
+                Date queryEnddate = queryOutput.getDate("EndDate");
+                Integer queryExpenses = queryOutput.getInt("Total_Expenses");
+                String queryHotelName = queryOutput.getString("hotel_name");
+
+                traveler_dashboardObservableList.add(new Traveler_Dashboard(
+                        queryExpenses,
+                        queryDestination,
+                        queryHotelName,
+                        queryStartdate,
+                        queryEnddate
+                ));
+            }
 
             travelerHotelTableColumn.setCellValueFactory(new PropertyValueFactory<>("hotel_name"));
-            travelerDestinationTableColumn.setCellValueFactory (new PropertyValueFactory<>("Destination"));
-            travelerStartTableColumn.setCellValueFactory (new PropertyValueFactory<>("StartDate"));
-            travelerEndTableColumn.setCellValueFactory (new PropertyValueFactory<>("EndDate"));
+            travelerDestinationTableColumn.setCellValueFactory(new PropertyValueFactory<>("Destination"));
+            travelerStartTableColumn.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
+            travelerEndTableColumn.setCellValueFactory(new PropertyValueFactory<>("EndDate"));
             travelerExpensesTableColumn.setCellValueFactory(new PropertyValueFactory<>("Total_Expenses"));
 
-            travelerDashboardTableView.setItems (traveler_dashboardObservableList);
+            travelerDashboardTableView.setItems(traveler_dashboardObservableList);
 
-        }
-        catch(SQLException e) {
-            Logger.getLogger (Traveler_Dashboard_Controller.class.getName()).log (Level. SEVERE,null, e);
+        } catch (SQLException e) {
+            Logger.getLogger(Traveler_Dashboard_Controller.class.getName()).log(Level.SEVERE, null, e);
             e.printStackTrace();
         }
     }
 
+    @FXML
+    private void cancelHotelBooking(ActionEvent event) {
+        Traveler_Dashboard selectedBooking = travelerDashboardTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedBooking == null) {
+            System.out.println("No booking selected for cancellation.");
+            return;
+        }
+
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            Connection connectDB = connectNow.getConnection();
+
+            String hotel = selectedBooking.getHotel_name();
+            String startDate = selectedBooking.getStartDate().toString();
+            String endDate = selectedBooking.getEndDate().toString();
+
+            String query = "DELETE FROM tourdetails WHERE traveler_nid = '" + nid + "' " +
+                    "AND hotel_name = '" + hotel + "' " +
+                    "AND StartDate = '" + startDate + "' " +
+                    "AND EndDate = '" + endDate + "'";
+
+            Statement statement = connectDB.createStatement();
+            int rowsAffected = statement.executeUpdate(query);
+
+            if (rowsAffected > 0) {
+                travelerDashboardTableView.getItems().remove(selectedBooking);
+                System.out.println("Booking cancelled successfully.");
+            } else {
+                System.out.println("No matching booking found to cancel.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
