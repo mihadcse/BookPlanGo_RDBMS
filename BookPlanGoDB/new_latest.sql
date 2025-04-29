@@ -1,5 +1,5 @@
 
-CREATE TABLE `car_details` (
+CREATE TABLE BookPlanGo.`car_details` (
   `CarID` int NOT NULL,
   `LiscenceNum` varchar(45) NOT NULL,
   `VehicleType` varchar(45) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE `car_details` (
   PRIMARY KEY (`LiscenceNum`)
 ) 
 
-CREATE TABLE `carbookdetails` (
+CREATE TABLE BookPlanGo.`carbookdetails` (
   `CarLicsence` varchar(45) DEFAULT NULL,
   `BookingDate` date DEFAULT NULL,
   `CarID` int DEFAULT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `carbookdetails` (
   PRIMARY KEY (`travelID`)
 ) 
 
-CREATE TABLE `h_roomdetails` (
+CREATE TABLE BookPlanGo.`h_roomdetails` (
   `Hotel_ID` int NOT NULL,
   `Hotel_name` varchar(45) DEFAULT NULL,
   `room_num` varchar(45) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE `h_roomdetails` (
   `RatingNum` int DEFAULT NULL
 ) 
 
-CREATE TABLE `hotel_info` (
+CREATE TABLE BookPlanGo.`hotel_info` (
   `Hotel_Id` int NOT NULL,
   `Hotel_name` varchar(45) NOT NULL,
   `Hotel_Address` varchar(45) NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `hotel_info` (
   UNIQUE KEY `Hotel_Id_UNIQUE` (`Hotel_Id`)
 ) 
 
-CREATE TABLE `message` (
+CREATE TABLE BookPlanGo.`message` (
   `from_id` varchar(100) DEFAULT NULL,
   `to_name` varchar(100) DEFAULT NULL,
   `message` varchar(400) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `message` (
   PRIMARY KEY (`id`)
 ) 
 
-CREATE TABLE `new_table` (
+CREATE TABLE BookPlanGo.`new_table` (
   `Hotel_ID` int NOT NULL,
   `Hotel_available_rooms` int NOT NULL,
   `Hotel_booked_rooms` int NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `new_table` (
   PRIMARY KEY (`Hotel_ID`)
 ) 
 
-CREATE TABLE `serviceprovider_info` (
+CREATE TABLE BookPlanGo.`serviceprovider_info` (
   `service_id` int NOT NULL,
   `service_name` varchar(100) NOT NULL,
   `service_password` varchar(64) DEFAULT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE `serviceprovider_info` (
   UNIQUE KEY `service_id_UNIQUE` (`service_id`)
 ) 
 
-CREATE TABLE `tourdetails` (
+CREATE TABLE BookPlanGo.`tourdetails` (
   `traveler_nid` int NOT NULL,
   `hotel_name` varchar(45) NOT NULL,
   `room_name` varchar(100) DEFAULT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE `tourdetails` (
   PRIMARY KEY (`travelID`)
 ) 
 
-CREATE TABLE `travel_places` (
+CREATE TABLE BookPlanGo.`travel_places` (
   `place_name` varchar(100) NOT NULL,
   `place_district` varchar(100) DEFAULT NULL,
   `place_division` varchar(100) DEFAULT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE `travel_places` (
   PRIMARY KEY (`place_name`)
 )
 
-CREATE TABLE `traveler_fav_places` (
+CREATE TABLE BookPlanGo.`traveler_fav_places` (
   `traveler_nid` int NOT NULL,
   `fav_place` varchar(100) NOT NULL,
   `fav_place_district` varchar(100) NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE `traveler_fav_places` (
   `fav_place_image_path` varchar(500) NOT NULL
 ) 
 
-CREATE TABLE `userinfo` (
+CREATE TABLE BookPlanGo.`userinfo` (
   `NID` int NOT NULL,
   `Username` varchar(64) NOT NULL,
   `Password` varchar(100) DEFAULT NULL,
@@ -129,3 +129,28 @@ CREATE TABLE `userinfo` (
   UNIQUE KEY `Username_UNIQUE` (`Username`),
   UNIQUE KEY `NID_UNIQUE` (`NID`)
 ) 
+
+
+-- -- -- -- -- --
+
+
+USE BookPlanGo;
+
+DELIMITER $$
+
+CREATE TRIGGER after_booking_cancel
+AFTER DELETE ON tourdetails
+FOR EACH ROW
+BEGIN
+  UPDATE h_roomdetails
+  SET room_status = 'available',
+      customer_id = NULL,
+      book_start_date = NULL,
+      book_end_date = NULL
+  WHERE Hotel_name = OLD.hotel_name
+    AND customer_id = OLD.traveler_nid
+    AND book_start_date = OLD.StartDate
+    AND book_end_date = OLD.EndDate;
+END$$
+
+DELIMITER ;
