@@ -112,7 +112,7 @@ public class Traveler_Dashboard_Controller {
 
         Date today = new Date();
         Date bookingStartDate = selectedBooking.getStartDate();
-        
+
         if (!bookingStartDate.after(today)) {
             Alert showalert = new Alert(Alert.AlertType.WARNING);
             showalert.setTitle("Cancellation Not Allowed");
@@ -222,3 +222,5 @@ public class Traveler_Dashboard_Controller {
         us.initialize();
     }
 }
+
+
