@@ -3,24 +3,26 @@ package org.example.bookplango;
 import java.util.Date;
 
 public class Traveler_Car_Dashboard {
-    Integer carid;
-    String car_lisence,start_d,end_d;
+    Integer travelID;  // Use travelID instead of carid
+    String car_lisence, start_d, end_d;
     Date date;
 
-    public Traveler_Car_Dashboard(Integer carid, String car_lisence, String start_d, String end_d, Date date) {
-        this.carid = carid;
+    // Constructor now includes travelID
+    public Traveler_Car_Dashboard(Integer travelID, String car_lisence, String start_d, String end_d, Date date) {
+        this.travelID = travelID;
         this.car_lisence = car_lisence;
         this.start_d = start_d;
         this.end_d = end_d;
         this.date = date;
     }
 
-    public Integer getCarid() {
-        return carid;
+    // Getters and Setters for travelID, car_lisence, start_d, end_d, date
+    public Integer getTravelID() {
+        return travelID;
     }
 
-    public void setCarid(Integer carid) {
-        this.carid = carid;
+    public void setTravelID(Integer travelID) {
+        this.travelID = travelID;
     }
 
     public String getCar_lisence() {
@@ -53,5 +55,16 @@ public class Traveler_Car_Dashboard {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Traveler_Car_Dashboard{" +
+                "travelID=" + travelID +
+                ", car_lisence='" + car_lisence + '\'' +
+                ", start_d='" + start_d + '\'' +
+                ", end_d='" + end_d + '\'' +
+                ", date=" + date +
+                '}';
     }
 }
