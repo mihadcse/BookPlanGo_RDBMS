@@ -147,7 +147,8 @@ public class Service_Message_Controller {
 
         while (res1.next()) {
             String queryName = res1.getString("from_id");
-            String queryMessage = res1.getString("message");
+            //String queryMessage = res1.getString("message");
+            String queryMessage = Encryption_Decryption_Message.decrypt(res1.getString("message"));
             if (queryName.equals(S_ID)) {
                 queryName = "You";
             }
@@ -204,7 +205,7 @@ public class Service_Message_Controller {
                 "VALUES\n" +
                 "('"+S_ID+"',\n" +
                 "'"+name+"',\n" +
-                "'"+message_send_text.getText()+"')";
+                "'"+Encryption_Decryption_Message.encrypt(message_send_text.getText())+"')";
         Statement statement = connectDB.createStatement();
         int rowsAffected = statement.executeUpdate(query_insert);
         if (rowsAffected > 0) {

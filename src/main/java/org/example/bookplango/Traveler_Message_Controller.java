@@ -179,7 +179,8 @@ public class Traveler_Message_Controller {
 
         while (res1.next()) {
             String queryName = res1.getString("from_id");
-            String queryMessage = res1.getString("message");
+            //String queryMessage = res1.getString("message");
+            String queryMessage = Encryption_Decryption_Message.decrypt(res1.getString("message"));
             if (queryName.equals(String.valueOf(nid))) {
                 queryName = "You";
             }
@@ -241,7 +242,7 @@ public class Traveler_Message_Controller {
                 "VALUES\n" +
                 "('"+String.valueOf(nid)+"',\n" +
                 "'"+name+"',\n" +
-                "'"+message_send_text.getText()+"')";
+                "'"+Encryption_Decryption_Message.encrypt(message_send_text.getText())+"')";
         Statement statement = connectDB.createStatement();
         int rowsAffected = statement.executeUpdate(query_insert);
         if (rowsAffected > 0) {

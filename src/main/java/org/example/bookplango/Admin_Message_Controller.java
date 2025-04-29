@@ -169,6 +169,8 @@ public class Admin_Message_Controller {
         message_text_area_view.setDisable(b);
         send.setDisable(b);
 
+        // 🔴 Clear the observable list before repopulating
+        admin_messageObservableList.clear();
 
         adminMessageTableView.getItems().clear();
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -185,10 +187,13 @@ public class Admin_Message_Controller {
         while (res1.next()) {
             String queryName = res1.getString("from_id");
             String queryMessage = res1.getString("message");
+
+            String decryptedMessage = Encryption_Decryption_Message.decrypt(queryMessage);
+
             if (queryName.equals("Admin")) {
                 queryName = "You";
             }
-            admin_messageObservableList.add(new Traveler_Message(queryName, queryMessage));
+            admin_messageObservableList.add(new Traveler_Message(queryName, decryptedMessage));
         }
         res1.close();
 
@@ -228,6 +233,8 @@ public class Admin_Message_Controller {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
+        String encryptedMessage = Encryption_Decryption_Message.encrypt(message_send_text.getText());
+
         String query_insert = "INSERT INTO `bookplango`.`message`\n" +
                 "(`from_id`,\n" +
                 "`to_name`,\n" +
@@ -235,7 +242,7 @@ public class Admin_Message_Controller {
                 "VALUES\n" +
                 "('Admin',\n" +
                 "'" + name + "',\n" +
-                "'" + message_send_text.getText() + "')";
+                "'" + encryptedMessage + "')";
         Statement statement = connectDB.createStatement();
         int rowsAffected = statement.executeUpdate(query_insert);
         if (rowsAffected > 0) {
