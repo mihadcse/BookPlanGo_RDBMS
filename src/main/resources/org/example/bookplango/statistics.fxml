@@ -28,7 +28,7 @@
       </Button>
 
       <!-- More Statistics Button -->
-      <Button layoutX="643.0" layoutY="20.0" onAction="#switchtoMoreStatScene" prefHeight="30.0" prefWidth="92.0" style="-fx-background-color: #74b9d4;" text="More Statistics" textFill="white">
+      <Button layoutX="643.0" layoutY="20.0" onAction="#switchtoMoreStatScene" prefHeight="30.0" prefWidth="92.0" stylesheets="@Style.css" text="More Statistics" textFill="#0f84e4">
          <font>
             <Font name="Calibri Bold" size="12.0" />
          </font>

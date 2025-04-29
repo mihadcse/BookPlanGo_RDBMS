@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,6 +27,19 @@ public class More_Statistics {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    @FXML
+    private RadioButton star5;
+    @FXML
+    private RadioButton star4;
+    @FXML
+    private RadioButton star3;
+    @FXML
+    private RadioButton star2;
+    @FXML
+    private RadioButton star1;
+    @FXML
+    private Label rating_success_label;
 
     public void switchtoUserScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("selectuser.fxml"));
@@ -84,4 +99,40 @@ public class More_Statistics {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void submitRating(ActionEvent event) {
+        int rating = 0;
+
+        if (star5.isSelected()) {
+            rating = 5;
+        } else if (star4.isSelected()) {
+            rating = 4;
+        } else if (star3.isSelected()) {
+            rating = 3;
+        } else if (star2.isSelected()) {
+            rating = 2;
+        } else if (star1.isSelected()) {
+            rating = 1;
+        }
+
+        if (rating != 0) {
+            try {
+                DatabaseConnection connectNow = new DatabaseConnection();
+                Connection connectDB = connectNow.getConnection();
+                Statement statement = connectDB.createStatement();
+                String insertRating = "INSERT INTO bookplango.ratings (rating_value) VALUES (" + rating + ")";
+                statement.executeUpdate(insertRating);
+
+                System.out.println("Rating submitted successfully: " + rating + " star(s)");
+                rating_success_label.setText("Thank you for your feedback!");
+            } catch (SQLException e) {
+                Logger.getLogger(More_Statistics.class.getName()).log(Level.SEVERE, null, e);
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Please select a rating before submitting.");
+        }
+    }
+
 }
