@@ -130,14 +130,14 @@ CREATE TABLE `userinfo` (
   UNIQUE KEY `NID_UNIQUE` (`NID`)
 ) 
 
-
+-- table for rating
 CREATE TABLE bookplango.ratings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     rating_value INT NOT NULL CHECK (rating_value BETWEEN 1 AND 5),
     rating_time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-
+-- table for rating logs
 CREATE TABLE bookplango.rating_logs (
     log_id INT AUTO_INCREMENT PRIMARY KEY,
     rating_id INT,
@@ -145,6 +145,7 @@ CREATE TABLE bookplango.rating_logs (
     log_time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+-- trigger for rating
 USE bookplango;
 DELIMITER $$
 
