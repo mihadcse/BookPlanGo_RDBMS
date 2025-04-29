@@ -110,6 +110,18 @@ public class Traveler_Dashboard_Controller {
             return;
         }
 
+        Date today = new Date();
+        Date bookingStartDate = selectedBooking.getStartDate();
+        
+        if (!bookingStartDate.after(today)) {
+            Alert showalert = new Alert(Alert.AlertType.WARNING);
+            showalert.setTitle("Cancellation Not Allowed");
+            showalert.setHeaderText(null);
+            showalert.setContentText("You cannot cancel a past or ongoing booking.");
+            showalert.showAndWait();
+            return;
+        }
+
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Confirm Cancellation");
         confirm.setHeaderText(null);

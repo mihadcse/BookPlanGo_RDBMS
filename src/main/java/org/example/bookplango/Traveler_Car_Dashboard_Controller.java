@@ -153,9 +153,24 @@ public class Traveler_Car_Dashboard_Controller {
             return;
         }
 
+        try {
+            Date bookingdate = selectedBooking.getDate();
+            Date today = new Date();
+            System.out.println("Start date raw string: " + bookingdate);
+
+            if (!bookingdate.after(today)) {
+                showAlert(Alert.AlertType.WARNING, "Invalid Operation", "You cannot cancel a past or ongoing booking.");
+                return;
+            }
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Date Error", "Could not parse the booking start date.");
+            Logger.getLogger(Traveler_Car_Dashboard_Controller.class.getName()).log(Level.SEVERE, null, e);
+            return;
+        }
+
         if (deleteBookingFromDatabase(selectedBooking)) {
             showAlert(Alert.AlertType.INFORMATION, "Success", "Booking cancelled successfully.");
-            initialize(); // Reloads data from the database
+            initialize(); // Refresh the table view
         } else {
             showAlert(Alert.AlertType.ERROR, "Failed", "Failed to cancel booking.");
         }
@@ -167,8 +182,8 @@ public class Traveler_Car_Dashboard_Controller {
 
         String deleteQuery = "DELETE FROM carbookdetails WHERE travelID = ? AND Username = ?";
         try (PreparedStatement preparedStatement = connectDB.prepareStatement(deleteQuery)) {
-            preparedStatement.setInt(1, selectedBooking.getTravelID()); // Use travelID for deletion
-            preparedStatement.setString(2, s); // User's username
+            preparedStatement.setInt(1, selectedBooking.getTravelID());
+            preparedStatement.setString(2, s);
 
             int affectedRows = preparedStatement.executeUpdate();
             return affectedRows > 0;
