@@ -96,6 +96,8 @@ public class Admin_Approval_Controller {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
+        admin_provider_DashboardObservableList.clear();
+
         String adminproviderTableViewquery = "Select service_id,service_name,service_phone_no,service_type from serviceprovider_info where service_approval = 'No'";
         try{
             Statement statement2 = connectDB.createStatement();
